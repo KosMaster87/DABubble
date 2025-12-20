@@ -1,0 +1,15 @@
+/**
+ * tsconfig.app.json
+ * TypeScript configuration for Angular application source files
+ */
+
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "files": ["src/config/environments/env.dev.ts", "src/config/environments/env.prod.ts"],
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts", "src/config/environments/*.example.ts"]
+}
