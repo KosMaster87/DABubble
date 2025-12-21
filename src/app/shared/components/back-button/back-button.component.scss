@@ -1,0 +1,54 @@
+/**
+ * Back Button Component Styles
+ * Circular icon-only navigation button
+ * BEM Methodology
+ */
+
+@use '../../../../styles/variables' as vars;
+@use '../../../../styles/mixins' as mix;
+
+.back-button {
+  @include mix.flex-center;
+  width: var(--back-button-size);
+  height: var(--back-button-size);
+  padding: 0;
+  background-color: var(--back-button-bg);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  @include mix.transition(all, 0.2s);
+
+  &:hover:not(:disabled) {
+    background-color: var(--back-button-bg-hover);
+
+    .back-button__icon {
+      color: var(--back-button-icon-color-hover);
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--back-button-bg-disabled);
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .back-button__icon {
+      opacity: 0.6;
+    }
+  }
+
+  &__icon {
+    width: var(--back-button-icon-size);
+    height: var(--back-button-icon-size);
+    color: var(--back-button-icon-color);
+    pointer-events: none;
+    @include mix.transition(color, 0.2s);
+  }
+}

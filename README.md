@@ -12,13 +12,19 @@ A modern, real-time chat application inspired by Discord, built with Angular 21,
 
 ## 🚀 Live Demo
 
-🔗 **Coming Soon**
+🔗 **[dabubble.dev2k.org](https://dabubble.dev2k.org)**
 
 ---
 
 ## 📸 Preview
 
-_Screenshots coming soon_
+### Desktop View
+
+![DABubble Desktop](public/screenshots/preview-desktop.png)
+
+### Mobile View
+
+![DABubble Mobile](public/screenshots/preview-mobile.png)
 
 ---
 

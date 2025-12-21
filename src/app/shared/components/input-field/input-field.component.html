@@ -1,0 +1,21 @@
+<div class="input-field">
+  <label [for]="id()" class="input-field__label">{{ label() }}</label>
+
+  <div class="input-field__wrapper">
+    @if (icon()) {
+    <img [src]="icon()" [alt]="label()" class="input-field__icon" />
+    }
+
+    <input
+      [id]="id()"
+      [type]="type()"
+      [formControl]="control()"
+      [placeholder]="placeholder()"
+      class="input-field__input"
+    />
+  </div>
+
+  @if (control().touched && control().invalid) {
+  <small class="input-field__error" @slideDown>{{ getErrorMessage() }}</small>
+  }
+</div>

@@ -5,8 +5,10 @@
  * @module AppComponent
  */
 
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FirebaseService } from '@core/services/firebase/firebase.service';
+import { environment } from '../config/environments/env.dev';
 
 @Component({
   selector: 'app-root',
@@ -16,4 +18,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('dabubble');
+  private firebaseService = inject(FirebaseService);
+
+  constructor() {
+    if (!environment.production) {
+      console.log('🚀 DABubble App started!');
+    }
+  }
 }

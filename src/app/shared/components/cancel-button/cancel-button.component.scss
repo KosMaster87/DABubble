@@ -1,0 +1,42 @@
+/**
+ * Cancel Button Component Styles
+ * Cancel action button with outline styling
+ * BEM Methodology
+ */
+
+@use '../../../../styles/variables' as vars;
+@use '../../../../styles/mixins' as mix;
+
+.cancel-button {
+  @include mix.flex-center;
+  gap: 0.5rem;
+  width: auto;
+  padding: 0.875rem 2rem;
+  font-size: var(--font-button);
+  font-weight: 600;
+  background-color: var(--cancel-button-bg);
+  color: var(--cancel-button-text-color);
+  border: var(--cancel-button-border);
+  border-radius: 6.25rem;
+  cursor: pointer;
+  @include mix.transition(all, 0.2s);
+
+  &:hover:not(:disabled) {
+    background-color: var(--cancel-button-bg-hover);
+    color: var(--cancel-button-text-hover);
+    border: var(--cancel-button-border-hover);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

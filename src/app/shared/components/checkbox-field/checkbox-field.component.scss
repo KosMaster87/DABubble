@@ -1,0 +1,65 @@
+/**
+ * Checkbox Field Component Styles
+ * Reusable custom checkbox component
+ * BEM Methodology
+ */
+
+@use '../../../../styles/variables' as vars;
+@use '../../../../styles/mixins' as mix;
+
+.checkbox-field {
+  @include mix.flex-center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 0.5rem;
+
+  &__wrapper {
+    @include mix.flex-center;
+    width: clamp(22px, 5vw, 24px);
+    height: clamp(22px, 5vw, 24px);
+    border-radius: 50%;
+    @include mix.transition(background, 0.3s);
+
+    &:hover {
+      background: rgba(70, 70, 220, 0.2);
+    }
+  }
+
+  &__input {
+    appearance: none;
+    width: clamp(18px, 3vw, 18px);
+    height: clamp(18px, 3vw, 18px);
+    border: clamp(2px, 0.4vw, 2px) solid rgba(70, 70, 220, 0.6);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    @include mix.transition(all, 0.3s);
+    flex-shrink: 0;
+
+    &:hover {
+      border-color: var(--primary-color);
+    }
+
+    &:checked {
+      background: transparent;
+      border-color: var(--primary-color);
+
+      &::after {
+        content: '✔';
+        font-size: clamp(12px, 2vw, 12px);
+        color: rgb(30, 30, 255);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &__label {
+    font-size: var(--font-xs);
+    color: var(--text-color);
+    cursor: pointer;
+  }
+}

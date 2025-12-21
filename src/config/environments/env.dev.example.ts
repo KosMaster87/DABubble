@@ -3,7 +3,6 @@
  * @description This file contains the Firebase configuration settings
  * for the DABubble application in production mode.
  * @module Environment
- * @author DABubble Team
  */
 
 export const environment = {

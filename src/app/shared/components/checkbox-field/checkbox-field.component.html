@@ -1,0 +1,9 @@
+<div class="checkbox-field">
+  <div class="checkbox-field__wrapper">
+    <input [id]="id()" type="checkbox" [formControl]="control()" class="checkbox-field__input" />
+  </div>
+
+  <label [for]="id()" class="checkbox-field__label">
+    <ng-content></ng-content>
+  </label>
+</div>

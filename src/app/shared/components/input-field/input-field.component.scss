@@ -1,0 +1,111 @@
+/**
+ * Input Field Component Styles
+ * Reusable input component with icon and error display
+ * BEM Methodology
+ */
+
+@use '../../../../styles/variables' as vars;
+@use '../../../../styles/mixins' as mix;
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--spacing-xs);
+
+  &__label {
+    display: none;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: var(--input-height);
+    background: var(--input-bg);
+    padding: var(--input-padding);
+    border-radius: var(--input-border-radius);
+    border: var(--input-border-width) solid var(--input-border-color);
+    gap: var(--input-gap);
+    @include mix.transition(all, 0.2s);
+
+    &:hover {
+      border-color: var(--input-border-hover);
+
+      .input-field__icon {
+        filter: brightness(0) saturate(100%);
+      }
+    }
+
+    &:focus-within {
+      background: var(--input-bg-focus);
+      border-color: var(--input-border-focus);
+
+      .input-field__icon {
+        filter: brightness(0) saturate(100%);
+      }
+    }
+
+    // Keep icon black when input has value
+    &:has(.input-field__input:not(:placeholder-shown)) {
+      .input-field__icon {
+        filter: brightness(0) saturate(100%);
+      }
+    }
+
+    // Disabled state for entire wrapper
+    &:has(.input-field__input:disabled) {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  &__icon {
+    width: var(--input-icon-size);
+    cursor: pointer;
+    flex-shrink: 0;
+    opacity: var(--input-icon-opacity);
+    @include mix.transition(all, 0.2s);
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: var(--input-font-size);
+    color: var(--input-text-color);
+    caret-color: var(--input-caret-color);
+    cursor: pointer;
+
+    &::placeholder {
+      color: var(--input-placeholder-color);
+      font-size: var(--input-font-size);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    // Remove browser autofill background
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+      -webkit-text-fill-color: var(--input-text-color) !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+
+  &__error {
+    display: block;
+    color: #e74c3c;
+    font-size: var(--font-xs);
+    margin-top: var(--spacing-xs);
+    overflow: hidden;
+  }
+}

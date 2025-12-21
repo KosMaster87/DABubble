@@ -1,0 +1,118 @@
+/**
+ * Registration Component Styles
+ * Mobile First Design (320px+)
+ * BEM Methodology
+ */
+
+@use '../../../../../styles/variables' as vars;
+@use '../../../../../styles/mixins' as mix;
+
+.register {
+  @include mix.flex-center;
+  min-height: 100vh;
+  width: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--background-color);
+
+  &__container {
+    @include mix.flex-center;
+    flex-direction: column;
+    width: clamp(15rem, 70vw + 1.5rem, 25rem);
+    min-height: 25rem;
+    background-color: var(--container-bg);
+    box-shadow: var(--container-shadow);
+    border-radius: 1.9rem;
+    padding: 1.5rem 0;
+    gap: clamp(0.1rem, 1vw, 2rem);
+
+    @include mix.respond-to(tablet) {
+      width: clamp(18rem, 50vw, 25rem);
+    }
+  }
+
+  // ===== HEADER =====
+  &__header {
+    display: grid;
+    grid-template-columns: 2rem 1fr 2rem;
+    row-gap: clamp(var(--spacing-xs), 1vw, var(--spacing-md));
+    width: 90%;
+    align-items: center;
+
+    @media (min-width: 350px) {
+      column-gap: clamp(var(--spacing-xs), 2vw, var(--spacing-lg));
+    }
+  }
+
+  &__back {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  &__title {
+    grid-column: 2;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: var(--font-title);
+    margin: 0;
+  }
+
+  &__subtitle {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #000000;
+    font-weight: 400;
+    font-size: var(--font-subtitle);
+    margin: 0;
+  }
+
+  // ===== FORM =====
+  &__form {
+    @include mix.flex-column-stretch;
+    width: 90%;
+    gap: 1.2rem;
+    padding: 1rem 0;
+  }
+
+  // ===== CHECKBOX WRAPPER =====
+  &__checkbox-wrapper {
+    @include mix.flex-column-stretch;
+    align-items: flex-start;
+    width: 100%;
+    gap: var(--spacing-xs);
+  }
+
+  // ===== BUTTON WRAPPER =====
+  &__button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  // ===== LINK =====
+  &__link {
+    font-family: var(--font-family-secondary);
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: var();
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: 30px;
+    @include mix.transition(all, 0.2s);
+
+    &:hover {
+      color: var(--link-hover-color);
+      background-color: var(--link-hover-bg);
+      text-decoration: none;
+    }
+  }
+
+  // ===== ERROR =====
+  &__error {
+    display: block;
+    color: #e74c3c;
+    font-size: var(--font-xs);
+    margin-top: var(--spacing-xs);
+    overflow: hidden;
+  }
+}
