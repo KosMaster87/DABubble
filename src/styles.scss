@@ -7,16 +7,5 @@
 @use 'styles/fonts.figtree' as figtree;
 @use 'styles/variables';
 @use 'styles/mixins';
-
-/* Global Resets */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--font-family-primary);
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
+@use 'styles/layout';
+@use 'styles/typography';

@@ -1,0 +1,30 @@
+/* Layout Mixins
+ * Reusable layout mixins for containers and responsive layouts
+ */
+
+/* ===== LAYOUT MIXINS ===== */
+
+/* Container with max-width and auto margins */
+@mixin container($max-width: var(--container-2xl)) {
+  width: 100%;
+  max-width: $max-width;
+  margin-inline: auto;
+
+  // Mobile Portrait - 320px+
+  padding-inline: var(--space-4);
+
+  // Tablet (portrait) - 768px+
+  @media screen and (min-width: 768px) {
+    padding-inline: var(--space-6);
+  }
+
+  // Tablet (landscape) - 1024px+
+  @media screen and (min-width: 1024px) {
+    padding-inline: var(--space-8);
+  }
+
+  // Desktop - 1440px+
+  @media screen and (min-width: 1440px) {
+    padding-inline: var(--space-10);
+  }
+}

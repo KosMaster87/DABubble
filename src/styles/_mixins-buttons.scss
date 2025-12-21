@@ -1,0 +1,65 @@
+/* Button Mixins
+ * Reusable button style mixins
+ */
+
+/* ===== BUTTON MIXINS ===== */
+
+/* Reset button styles */
+@mixin reset-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+/* Base button styles */
+@mixin button-base {
+  @include reset-button;
+  @include transition(background-color, color, transform);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Mobile Portrait - 320px+
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+
+  // Foldable/Compact phones (landscape) - 568px+
+  @media screen and (min-width: 568px) {
+    padding: var(--space-3) var(--space-5);
+  }
+
+  // Tablet (portrait) - 768px+
+  @media screen and (min-width: 768px) {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--font-size-base);
+  }
+
+  // Tablet (landscape) - 1024px+
+  @media screen and (min-width: 1024px) {
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-6);
+  }
+
+  // Desktop - 1440px+
+  @media screen and (min-width: 1440px) {
+    padding: var(--space-4) var(--space-8);
+  }
+}

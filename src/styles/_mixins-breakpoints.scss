@@ -1,0 +1,69 @@
+/* Responsive Breakpoints
+ * Reusable responsive breakpoint mixins for different device sizes
+ */
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Mobile Portrait (default) - 320px+ */
+@mixin mobile-portrait {
+  @content;
+}
+
+/* Foldable/Compact Phones (landscape) - 568px+ */
+@mixin mobile-landscape {
+  @media screen and (min-width: 568px) {
+    @content;
+  }
+}
+
+/* Tablet (portrait) - 768px+ */
+@mixin tablet {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+/* Tablet (landscape) - 1024px+ */
+@mixin tablet-landscape {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+/* Laptop - 1280px+ */
+@mixin laptop {
+  @media screen and (min-width: 1280px) {
+    @content;
+  }
+}
+
+/* Desktop - 1440px+ */
+@mixin desktop {
+  @media screen and (min-width: 1440px) {
+    @content;
+  }
+}
+
+/* Large Desktop - 1920px+ */
+@mixin desktop-large {
+  @media screen and (min-width: 1920px) {
+    @content;
+  }
+}
+
+/* Legacy respond-to (keep for compatibility) */
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (min-width: 768px) and (max-width: 1023px) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+}

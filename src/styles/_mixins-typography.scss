@@ -1,0 +1,282 @@
+/* Typography Mixins
+ * Responsive typography mixins for different device sizes
+ */
+
+/* ===== RESPONSIVE TYPOGRAPHY MIXINS ===== */
+
+/* Body text */
+@mixin body {
+  // Mobile (portrait) - 320px+
+  font-size: var(--font-size-base);
+
+  // Foldable/Compact phones (landscape) - 568px+
+  @media screen and (min-width: 568px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Tablet (portrait) - 768px+
+  @media screen and (min-width: 768px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Tablet (landscape) - 1024px+
+  @media screen and (min-width: 1024px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Laptop - 1280px+
+  @media screen and (min-width: 1280px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Desktop - 1440px+
+  @media screen and (min-width: 1440px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Large Desktop - 1920px+
+  @media screen and (min-width: 1920px) {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Heading 1 - Largest heading */
+@mixin heading-1 {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  // line-height: var(--line-height-tight);
+  // letter-spacing: var(--letter-spacing-tight);
+
+  // Mobile (portrait) - 320px+
+  font-size: clamp(1.75rem, 5vw, 2rem);
+
+  // Foldable/Compact phones (landscape) - 568px+
+  @media screen and (min-width: 568px) {
+    font-size: clamp(2rem, 4.5vw, 2.25rem);
+  }
+
+  // Tablet (portrait) - 768px+
+  @media screen and (min-width: 768px) {
+    font-size: clamp(2.25rem, 4vw, 2.5rem);
+  }
+
+  // Tablet (landscape) - 1024px+
+  @media screen and (min-width: 1024px) {
+    font-size: var(--font-size-4xl);
+  }
+
+  // Laptop - 1280px+
+  @media screen and (min-width: 1280px) {
+    font-size: var(--font-size-5xl);
+  }
+
+  // Desktop - 1440px+
+  @media screen and (min-width: 1440px) {
+    font-size: var(--font-size-5xl);
+  }
+
+  // Large Desktop - 1920px+
+  @media screen and (min-width: 1920px) {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+/* Heading 2 */
+@mixin heading-2 {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  // line-height: var(--line-height-tight);
+
+  // Mobile (portrait) - 320px+
+  font-size: clamp(1.5rem, 4.5vw, 1.75rem);
+
+  // Foldable/Compact phones (landscape) - 568px+
+  @media screen and (min-width: 568px) {
+    font-size: clamp(1.75rem, 4vw, 2rem);
+  }
+
+  // Tablet (portrait) - 768px+
+  @media screen and (min-width: 768px) {
+    font-size: clamp(2rem, 3.5vw, 2.25rem);
+  }
+
+  // Tablet (landscape) - 1024px+
+  @media screen and (min-width: 1024px) {
+    font-size: var(--font-size-3xl);
+  }
+
+  // Laptop - 1280px+
+  @media screen and (min-width: 1280px) {
+    font-size: var(--font-size-4xl);
+  }
+
+  // Desktop - 1440px+
+  @media screen and (min-width: 1440px) {
+    font-size: var(--font-size-4xl);
+  }
+
+  // Large Desktop - 1920px+
+  @media screen and (min-width: 1920px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+/* Heading 3 */
+@mixin heading-3 {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-semibold);
+  // line-height: var(--line-height-tight);
+
+  // Mobile (portrait) - 320px+
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+
+  // Foldable/Compact phones (landscape) - 568px+
+  @media screen and (min-width: 568px) {
+    font-size: clamp(1.5rem, 3.5vw, 1.75rem);
+  }
+
+  // Tablet (portrait) - 768px+
+  @media screen and (min-width: 768px) {
+    font-size: clamp(1.75rem, 3vw, 2rem);
+  }
+
+  // Tablet (landscape) - 1024px+
+  @media screen and (min-width: 1024px) {
+    font-size: var(--font-size-2xl);
+  }
+
+  // Laptop - 1280px+
+  @media screen and (min-width: 1280px) {
+    font-size: var(--font-size-3xl);
+  }
+
+  // Desktop - 1440px+
+  @media screen and (min-width: 1440px) {
+    font-size: var(--font-size-3xl);
+  }
+
+  // Large Desktop - 1920px+
+  @media screen and (min-width: 1920px) {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+/* Heading 4 */
+@mixin heading-4 {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-semibold);
+  // line-height: var(--line-height-normal);
+
+  // Mobile (portrait) - 320px+
+  font-size: clamp(1.125rem, 3.5vw, 1.25rem);
+
+  // Foldable/Compact phones (landscape) - 568px+
+  @media screen and (min-width: 568px) {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+  }
+
+  // Tablet (portrait) - 768px+
+  @media screen and (min-width: 768px) {
+    font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+  }
+
+  // Tablet (landscape) - 1024px+
+  @media screen and (min-width: 1024px) {
+    font-size: var(--font-size-xl);
+  }
+
+  // Laptop - 1280px+
+  @media screen and (min-width: 1280px) {
+    font-size: var(--font-size-2xl);
+  }
+
+  // Desktop - 1440px+
+  @media screen and (min-width: 1440px) {
+    font-size: var(--font-size-2xl);
+  }
+
+  // Large Desktop - 1920px+
+  @media screen and (min-width: 1920px) {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* Subtitle - For descriptive text under headings */
+@mixin subtitle {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-normal);
+  // line-height: var(--line-height-relaxed);
+
+  // Mobile (portrait) - 320px+ (minimum 1rem)
+  font-size: clamp(1rem, 3vw, 1.125rem);
+
+  // Foldable/Compact phones (landscape) - 568px+
+  @media screen and (min-width: 568px) {
+    font-size: clamp(1.0625rem, 2.75vw, 1.125rem);
+  }
+
+  // Tablet (portrait) - 768px+
+  @media screen and (min-width: 768px) {
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  }
+
+  // Tablet (landscape) - 1024px+
+  @media screen and (min-width: 1024px) {
+    font-size: var(--font-size-lg);
+  }
+
+  // Laptop - 1280px+
+  @media screen and (min-width: 1280px) {
+    font-size: var(--font-size-xl);
+  }
+
+  // Desktop - 1440px+
+  @media screen and (min-width: 1440px) {
+    font-size: var(--font-size-xl);
+  }
+
+  // Large Desktop - 1920px+
+  @media screen and (min-width: 1920px) {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* Small text */
+@mixin text-base {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+
+  // Mobile (portrait) - 320px+
+  font-size: var(--font-size-base);
+
+  // Foldable/Compact phones (landscape) - 568px+
+  @media screen and (min-width: 568px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Tablet (portrait) - 768px+
+  @media screen and (min-width: 768px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Tablet (landscape) - 1024px+
+  @media screen and (min-width: 1024px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Laptop - 1280px+
+  @media screen and (min-width: 1280px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Desktop - 1440px+
+  @media screen and (min-width: 1440px) {
+    font-size: var(--font-size-base);
+  }
+
+  // Large Desktop - 1920px+
+  @media screen and (min-width: 1920px) {
+    font-size: var(--font-size-base);
+  }
+}

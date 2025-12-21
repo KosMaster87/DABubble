@@ -1,69 +1,12 @@
 /* SCSS Mixins
  * Reusable SCSS mixins for responsive design, flexbox, etc.
+ * All mixins are organized in separate files for better maintainability
  */
 
-/* Responsive Breakpoint Mixin */
-@mixin respond-to($breakpoint) {
-  @if $breakpoint == mobile {
-    @media (max-width: 767px) {
-      @content;
-    }
-  } @else if $breakpoint == tablet {
-    @media (min-width: 768px) and (max-width: 1023px) {
-      @content;
-    }
-  } @else if $breakpoint == desktop {
-    @media (min-width: 1024px) {
-      @content;
-    }
-  }
-}
-
-/* Flexbox Mixin with Parameters */
-@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
-  display: flex;
-  flex-direction: $direction;
-  justify-content: $justify;
-  align-items: $align;
-  flex-wrap: $wrap;
-}
-
-/* Flexbox Center Mixin (Shorthand) */
-@mixin flex-center {
-  @include flex(row, center, center);
-}
-
-/* Flexbox Column Stretch Mixin (Shorthand) */
-@mixin flex-column-stretch {
-  @include flex(column, flex-start, stretch);
-}
-
-/* Custom Scrollbar */
-@mixin custom-scrollbar($width: 8px, $track-color: #f1f1f1, $thumb-color: #888) {
-  &::-webkit-scrollbar {
-    width: $width;
-  }
-  &::-webkit-scrollbar-track {
-    background: $track-color;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: $thumb-color;
-    border-radius: 4px;
-  }
-}
-
-/* Box Shadow */
-@mixin shadow($level: 1) {
-  @if $level == 1 {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  } @else if $level == 2 {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  } @else if $level == 3 {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-}
-
-/* Transition Mixin */
-@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
-  transition: $property $duration $timing;
-}
+/* Forward all mixin modules */
+@forward 'mixins-breakpoints';
+@forward 'mixins-layout';
+@forward 'mixins-flexbox';
+@forward 'mixins-typography';
+@forward 'mixins-buttons';
+@forward 'mixins-utilities';

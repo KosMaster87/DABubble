@@ -1,10 +1,3 @@
-/**
- * Checkbox Field Component Styles
- * Reusable custom checkbox component
- * BEM Methodology
- */
-
-@use '../../../../styles/variables' as vars;
 @use '../../../../styles/mixins' as mix;
 
 .checkbox-field {
@@ -58,8 +51,15 @@
   }
 
   &__label {
-    font-size: var(--font-xs);
+    @include mix.text-base;
     color: var(--text-color);
     cursor: pointer;
+  }
+  &__error {
+    @include mix.text-base;
+    display: block;
+    color: #e74c3c;
+    margin-top: var(--space-2);
+    overflow: hidden;
   }
 }

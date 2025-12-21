@@ -7,3 +7,7 @@
     <ng-content></ng-content>
   </label>
 </div>
+
+@if (control().touched && control().invalid) {
+<small class="checkbox-field__error" @slideDown>{{ getErrorMessage() }}</small>
+}

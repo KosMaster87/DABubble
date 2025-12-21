@@ -1,0 +1,54 @@
+/* Utility Mixins
+ * Reusable utility mixins for transitions, focus, shadows, etc.
+ */
+
+/* ===== UTILITY MIXINS ===== */
+
+/* Transition */
+@mixin transition($properties...) {
+  transition-property: #{$properties};
+  transition-duration: var(--transition-base);
+  transition-timing-function: var(--ease-in-out);
+}
+
+/* Focus ring */
+@mixin focus-ring($color: var(--primary-color)) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}
+
+/* Focus visible */
+@mixin focus-visible {
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+/* Custom Scrollbar (legacy) */
+@mixin custom-scrollbar($width: 8px, $track-color: #f1f1f1, $thumb-color: #888) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: var(--radius-full);
+
+    &:hover {
+      background: darken($thumb-color, 10%);
+    }
+  }
+}
+
+/* Box Shadow (legacy) */
+@mixin shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow: var(--shadow-sm);
+  } @else if $level == 2 {
+    box-shadow: var(--shadow-md);
+  } @else if $level == 3 {
+    box-shadow: var(--shadow-lg);
+  }
+}

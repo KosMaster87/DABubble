@@ -53,15 +53,17 @@
       />
 
       <!-- Privacy Checkbox -->
-      <div class="register__checkbox-wrapper">
-        <app-checkbox-field [control]="$any(registerForm.controls['privacy'])" id="privacy">
-          I agree to the
-          <a href="/privacy" class="register__link" target="_blank">Privacy policy.</a>
-        </app-checkbox-field>
-        @if (registerForm.get('privacy')?.touched && registerForm.get('privacy')?.invalid) {
-        <small class="register__error" @slideDown>Please accept the privacy policy.</small>
-        }
-      </div>
+      <app-checkbox-field
+        [control]="$any(registerForm.controls['privacy'])"
+        id="privacy"
+        [errorMessages]="{
+          required: 'Please accept the privacy policy.',
+          requiredTrue: 'Please accept the privacy policy.'
+        }"
+      >
+        <span class="register__checkbox-text">I agree to the</span>
+        <a href="/privacy" class="register__link" target="_blank">Privacy policy.</a>
+      </app-checkbox-field>
 
       <!-- Submit Button -->
       <div class="register__button-wrapper">

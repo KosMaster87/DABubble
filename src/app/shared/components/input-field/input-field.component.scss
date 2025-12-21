@@ -1,10 +1,3 @@
-/**
- * Input Field Component Styles
- * Reusable input component with icon and error display
- * BEM Methodology
- */
-
-@use '../../../../styles/variables' as vars;
 @use '../../../../styles/mixins' as mix;
 
 .input-field {
@@ -102,10 +95,10 @@
   }
 
   &__error {
+    @include mix.text-base;
     display: block;
     color: #e74c3c;
-    font-size: var(--font-xs);
-    margin-top: var(--spacing-xs);
+    margin-top: var(--space-2);
     overflow: hidden;
   }
 }

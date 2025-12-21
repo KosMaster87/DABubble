@@ -1,0 +1,53 @@
+/* Flexbox Mixins
+ * Reusable flexbox layout mixins
+ */
+
+/* ===== FLEXBOX MIXINS ===== */
+
+/* Flexbox with Parameters */
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+/* Flexbox Center (both axes) */
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Flexbox Column */
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Flexbox Space Between */
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Flexbox Start */
+@mixin flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Flexbox End */
+@mixin flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Flexbox Column Stretch (legacy) */
+@mixin flex-column-stretch {
+  @include flex(column, flex-start, stretch);
+}
