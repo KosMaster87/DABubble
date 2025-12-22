@@ -1,14 +1,14 @@
 /**
- * @fileoverview Registration Component
+ * @fileoverview Signup Component
  * @description Component for user registration with form validation
- * @module pages/register
+ * @module pages/signup
  */
 
 import { Component, inject, signal } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthStore } from '@stores/auth.store';
+import { AuthStore } from '@stores/auth';
 import { slideDownAnimation } from '@shared/animations';
 import {
   InputFieldComponent,
@@ -18,7 +18,7 @@ import {
 } from '@shared/components';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-signup',
   imports: [
     ReactiveFormsModule,
     InputFieldComponent,
@@ -26,20 +26,20 @@ import {
     PrimaryButtonComponent,
     BackButtonComponent,
   ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.scss',
   animations: [slideDownAnimation],
 })
-export class RegisterComponent {
+export class SignupComponent {
   private fb = inject(FormBuilder);
   private authStore = inject(AuthStore);
   private router = inject(Router);
 
-  protected registerForm: FormGroup;
+  protected signupForm: FormGroup;
   protected isSubmitting = signal(false);
 
   constructor() {
-    this.registerForm = this.createForm();
+    this.signupForm = this.createForm();
   }
 
   /**
@@ -63,8 +63,8 @@ export class RegisterComponent {
    * @returns {Promise<void>}
    */
   async onSubmit(): Promise<void> {
-    if (this.registerForm.invalid) {
-      this.registerForm.markAllAsTouched();
+    if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched();
       return;
     }
 
@@ -81,9 +81,9 @@ export class RegisterComponent {
     this.isSubmitting.set(true);
 
     try {
-      const { name, email, password } = this.registerForm.value;
-      await this.authStore.register(email, password, name);
-      await this.router.navigate(['/avatar-selection']);
+      const { name, email, password } = this.signupForm.value;
+      await this.authStore.signup(email, password, name);
+      await this.router.navigate(['/auth/avatar-selection']);
     } catch (error) {
       console.error('Registration failed:', error);
     } finally {
@@ -97,6 +97,6 @@ export class RegisterComponent {
    * @returns {void}
    */
   goBack(): void {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/auth/signin']);
   }
 }

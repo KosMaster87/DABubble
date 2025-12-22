@@ -1,0 +1,29 @@
+<div class="verify-email">
+  <div class="verify-email__container">
+    @if (isVerifying()) {
+    <!-- Loading State -->
+    <div class="verify-email__loading">
+      <h1 class="verify-email__title">Verifying Email...</h1>
+      <p class="verify-email__subtitle">Please wait while we verify your email address.</p>
+    </div>
+    } @else if (verificationSuccess()) {
+    <!-- Success State -->
+    <div class="verify-email__success">
+      <h1 class="verify-email__title">Email Verified!</h1>
+      <p class="verify-email__subtitle">
+        Your email has been successfully verified. You can now sign in to your account.
+      </p>
+      <app-primary-button label="Go to Sign In" (clicked)="navigateToSignin()" />
+    </div>
+    } @else if (verificationError()) {
+    <!-- Error State -->
+    <div class="verify-email__error">
+      <h1 class="verify-email__title">Verification Failed</h1>
+      <p class="verify-email__subtitle">
+        We couldn't verify your email. The link may have expired or is invalid.
+      </p>
+      <app-primary-button label="Back to Sign In" (clicked)="navigateToSignin()" />
+    </div>
+    }
+  </div>
+</div>

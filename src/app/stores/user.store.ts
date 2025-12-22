@@ -10,13 +10,10 @@ import {
   Firestore,
   collection,
   doc,
-  addDoc,
   updateDoc,
   getDocs,
   getDoc,
   deleteDoc,
-  query,
-  where,
 } from '@angular/fire/firestore';
 import { User } from '@core/models/user.model';
 
@@ -55,22 +52,8 @@ export const UserStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withComputed((store) => ({
-    /**
-     * Computed property for total user count
-     * @returns {Signal<number>} Number of users
-     */
     userCount: computed(() => store.users().length),
-
-    /**
-     * Computed function to get user by ID
-     * @returns {Signal<Function>} Function that takes uid and returns user or undefined
-     */
     getUserById: computed(() => (uid: string) => store.users().find((user) => user.uid === uid)),
-
-    /**
-     * Computed function to get multiple users by their IDs
-     * @returns {Signal<Function>} Function that takes uid array and returns matching users
-     */
     getUsersByIds: computed(
       () => (uids: string[]) => store.users().filter((user) => uids.includes(user.uid))
     ),

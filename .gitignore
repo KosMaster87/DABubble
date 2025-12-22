@@ -83,7 +83,7 @@ docs/
 
 # Markdown files (documentation)
 # Exclude all markdown files by default
-*.md
+# *.md
 
 # But include the main README
 !README.md

@@ -1,0 +1,79 @@
+@use '../../../../../styles/mixins' as mix;
+
+.verify-email {
+  @include mix.flex-center;
+  min-height: 100vh;
+  width: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--background-color);
+
+  &__container {
+    @include mix.flex-center;
+    flex-direction: column;
+    background-color: var(--container-bg);
+    box-shadow: var(--container-shadow);
+    border-radius: 1.9rem;
+
+    // Mobile Portrait - 320px+
+    width: min(90%, 20rem);
+    min-height: 20rem;
+    padding: var(--space-6);
+    gap: var(--space-4);
+
+    // Mobile Landscape - 568px+
+    @include mix.mobile-landscape {
+      width: min(85%, 22rem);
+      gap: var(--space-5);
+    }
+
+    // Tablet - 768px+
+    @include mix.tablet {
+      width: min(70%, 25rem);
+      min-height: 25rem;
+      padding: var(--space-8);
+      gap: var(--space-6);
+    }
+
+    // Tablet Landscape - 1024px+
+    @include mix.tablet-landscape {
+      width: 25rem;
+    }
+  }
+
+  // ===== LOADING =====
+  &__loading,
+  &__success,
+  &__error {
+    @include mix.flex-column-center;
+    text-align: center;
+    gap: var(--space-4);
+    width: 100%;
+
+    @include mix.tablet {
+      gap: var(--space-6);
+    }
+  }
+
+  &__title {
+    @include mix.heading-3;
+    margin: 0;
+    color: var(--primary-color);
+
+    @include mix.laptop {
+      font-size: var(--font-size-2xl);
+    }
+  }
+
+  &__subtitle {
+    @include mix.body;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  // ===== ERROR STATE =====
+  &__error {
+    .verify-email__title {
+      color: var(--error-color);
+    }
+  }
+}

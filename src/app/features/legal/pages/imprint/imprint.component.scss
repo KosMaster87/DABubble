@@ -1,0 +1,20 @@
+@use '../../../../../styles/mixins' as mix;
+
+.imprint {
+  @include mix.flex-column-stretch;
+  padding: var(--space-6);
+  max-width: 800px;
+  margin: 0 auto;
+
+  &__title {
+    @include mix.heading-2;
+    color: var(--primary-color);
+    margin-bottom: var(--space-4);
+  }
+
+  &__content {
+    @include mix.body;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+}

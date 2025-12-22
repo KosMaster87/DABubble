@@ -1,0 +1,146 @@
+@use '../../../../../styles/mixins' as mix;
+
+.signup {
+  &__container {
+    @include mix.flex-center;
+    flex-direction: column;
+    background-color: var(--container-bg);
+    box-shadow: var(--container-shadow);
+    border-radius: 1.9rem;
+
+    // Mobile Portrait - 320px+
+    width: min(90%, 20rem);
+    min-height: 20rem;
+    padding: var(--space-6) 0;
+    gap: var(--space-2);
+
+    // Mobile Landscape - 568px+
+    @include mix.mobile-landscape {
+      width: min(85%, 22rem);
+      gap: var(--space-3);
+    }
+
+    // Tablet - 768px+
+    @include mix.tablet {
+      width: min(70%, 25rem);
+      min-height: 25rem;
+      padding: var(--space-8) 0;
+      gap: var(--space-4);
+    }
+
+    // Tablet Landscape - 1024px+
+    @include mix.tablet-landscape {
+      width: 25rem;
+      gap: var(--space-5);
+    }
+  }
+
+  // ===== HEADER =====
+  &__header {
+    display: grid;
+    grid-template-columns: 2rem 1fr 2rem;
+    width: 90%;
+    align-items: center;
+
+    // Mobile Portrait - 320px+
+    row-gap: var(--space-2);
+    column-gap: var(--space-1);
+
+    // Mobile Landscape - 568px+
+    @include mix.mobile-landscape {
+      column-gap: var(--space-2);
+    }
+
+    // Tablet - 768px+
+    @include mix.tablet {
+      row-gap: var(--space-4);
+      column-gap: var(--space-4);
+    }
+
+    // Tablet Landscape - 1024px+
+    @include mix.tablet-landscape {
+      column-gap: var(--space-6);
+    }
+  }
+
+  &__back {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  &__title {
+    @include mix.heading-3;
+    grid-column: 2;
+    margin: 0;
+    text-align: center;
+    color: var(--primary-color);
+
+    // Begrenze font-size damit Text im Grid bleibt
+    @include mix.laptop {
+      font-size: var(--font-size-2xl);
+    }
+  }
+
+  &__subtitle {
+    @include mix.subtitle;
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #000000;
+    margin: 0;
+
+    // Begrenze font-size damit Text im Container bleibt
+    @include mix.laptop {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  // ===== FORM =====
+  &__form {
+    @include mix.flex-column-stretch;
+    width: 90%;
+    padding: var(--space-4) 0;
+
+    // Mobile Portrait - 320px+
+    gap: var(--space-4);
+
+    // Tablet - 768px+
+    @include mix.tablet {
+      gap: var(--space-5);
+      padding: var(--space-6) 0;
+    }
+  }
+
+  // ===== BUTTON WRAPPER =====
+  &__button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  // ===== LINK =====
+  &__link {
+    @include mix.body;
+    font-family: var(--font-family-secondary);
+    color: var(--link-color);
+    text-decoration: none;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    @include mix.transition(color, background-color);
+
+    &:hover {
+      color: var(--link-hover-color);
+      background-color: var(--link-hover-bg);
+      text-decoration: none;
+    }
+  }
+
+  // ===== CHECKBOX TEXT =====
+  &__checkbox-text {
+    // Kleine Bildschirme - unter 350px: gleiches Padding wie Link
+    @media screen and (max-width: 349px) {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
+    }
+  }
+}

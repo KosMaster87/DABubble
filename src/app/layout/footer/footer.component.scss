@@ -1,0 +1,22 @@
+@use '../../../styles/mixins' as mix;
+
+.footer {
+  @include mix.flex-column-center;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-4);
+  width: 100%;
+
+  &__popup-signup {
+    // Visible on mobile, hidden on desktop
+    display: block;
+
+    // Tablet - 768px+
+    @include mix.tablet {
+      display: none;
+    }
+  }
+
+  &__legal {
+    display: block;
+  }
+}

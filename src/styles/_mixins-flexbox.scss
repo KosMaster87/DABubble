@@ -51,3 +51,8 @@
 @mixin flex-column-stretch {
   @include flex(column, flex-start, stretch);
 }
+
+/* Flexbox Column Center */
+@mixin flex-column-center {
+  @include flex(column, center, center);
+}

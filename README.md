@@ -63,14 +63,15 @@ A modern, real-time chat application inspired by Discord, built with Angular 21,
 
 **Frontend**
 
-- Angular 21 (Standalone Components, Signals)
-- TypeScript 5.9 (Strict mode)
+- Angular 21 (Standalone Components, Signals, Zoneless)
+- TypeScript 5.9 (Strict mode, isolatedModules)
 - SCSS (BEM Methodology)
 - RxJS 7.8
+- NgRx SignalStore (State Management)
 
 **Backend & Database**
 
-- Firebase Authentication
+- Firebase Authentication (Email/Password, Google OAuth Popup)
 - Cloud Firestore (NoSQL Database)
 - Firebase Storage (File uploads)
 - Real-time listeners
@@ -81,13 +82,15 @@ A modern, real-time chat application inspired by Discord, built with Angular 21,
 - ESLint & Prettier
 - JSDoc Documentation
 - Max 14 lines per function
-- Max 400 LOC per file
+- Max 100 LOC per modular file (stores)
+- Max 400 LOC per file (general)
 
-**DevOps**
+**DevOps & Hosting**
 
 - GitHub (Version Control)
-- Firebase Hosting
-- Continuous Integration
+- Firebase Hosting (Reference)
+- IONOS Apache Hosting (Production: dabubble.dev2k.org)
+- .htaccess SPA routing configuration
 
 ---
 
@@ -102,74 +105,84 @@ dabubble/
 │   └── workflows/
 │       └── deploy.yml                     # CI/CD Pipeline (future)
 ├── public/
-│   └── favicon.ico
+│   ├── favicon.ico
+│   ├── manifest-dark.webmanifest          # PWA manifest (dark)
+│   ├── manifest-light.webmanifest         # PWA manifest (light)
+│   └── img/                               # Public images & icons
 ├── src/
 │   ├── app/
-│   │   ├── core/                          # Core services & guards
-│   │   │   ├── guards/                    # Auth guards
+│   │   ├── core/                          # Singleton Services, Guards, Models
+│   │   │   ├── components/                # Core Layout Components
+│   │   │   │   ├── auth-layout/           # Auth Pages Layout Wrapper
+│   │   │   │   ├── header/                # Auth Header Component
+│   │   │   │   └── footer/                # Auth Footer Component
+│   │   │   ├── guards/                    # Route Guards
+│   │   │   │   ├── auth.guard.ts          # Protect authenticated routes
+│   │   │   │   └── no-auth.guard.ts       # Redirect if authenticated
 │   │   │   ├── interceptors/              # HTTP interceptors
-│   │   │   └── services/                  # Core services
-│   │   │       ├── auth.service.ts        # Firebase authentication
-│   │   │       ├── firestore.service.ts   # Database operations
-│   │   │       └── storage.service.ts     # File uploads
-│   │   ├── features/                      # Feature modules
-│   │   │   ├── auth/                      # Authentication
-│   │   │   │   ├── components/
-│   │   │   │   │   ├── login/
-│   │   │   │   │   ├── register/
-│   │   │   │   │   └── password-reset/
-│   │   │   │   └── pages/
-│   │   │   │       └── auth-page/
-│   │   │   ├── channels/                  # Channel management
+│   │   │   ├── models/                    # Domain Models (User, Channel, Message)
+│   │   │   └── services/                  # Core Services
+│   │   │       └── i18n/                  # Internationalization
+│   │   ├── features/                      # Feature Modules (Business Logic)
+│   │   │   ├── auth/                      # Authentication Feature
+│   │   │   │   ├── pages/
+│   │   │   │   │   ├── signin/            # SignIn Page (Email + Google OAuth Popup)
+│   │   │   │   │   ├── signup/            # SignUp Page
+│   │   │   │   │   ├── password-reset/    # Password Reset Page
+│   │   │   │   │   ├── imprint/           # Legal: Imprint
+│   │   │   │   │   └── privacy-police/    # Legal: Privacy Policy
+│   │   │   │   └── components/
+│   │   │   │       └── popup-signup/      # Signup Popup (from Header)
+│   │   │   ├── channels/                  # Channel Management
 │   │   │   │   ├── components/
 │   │   │   │   │   ├── channel-list/
-│   │   │   │   │   ├── channel-create/
-│   │   │   │   │   └── channel-settings/
+│   │   │   │   │   └── channel-create/
 │   │   │   │   └── services/
 │   │   │   │       └── channel.service.ts
-│   │   │   ├── messages/                  # Messages & threads
+│   │   │   ├── messages/                  # Messages & Threads
 │   │   │   │   ├── components/
 │   │   │   │   │   ├── message-list/
 │   │   │   │   │   ├── message-input/
-│   │   │   │   │   ├── thread-view/
-│   │   │   │   │   └── reaction-picker/
+│   │   │   │   │   └── thread-view/
 │   │   │   │   └── services/
 │   │   │   │       └── message.service.ts
-│   │   │   └── users/                     # User management
+│   │   │   └── users/                     # User Management
 │   │   │       ├── components/
-│   │   │       │   ├── user-profile/
-│   │   │       │   ├── user-list/
-│   │   │       │   └── avatar-picker/
+│   │   │       │   └── user-profile/
 │   │   │       └── services/
 │   │   │           └── user.service.ts
-│   │   ├── layout/                        # App layout
-│   │   │   ├── header/
-│   │   │   ├── sidebar/
-│   │   │   └── main-view/
-│   │   ├── shared/                        # Shared components
+│   │   ├── layout/                        # Main App Layout (post-auth)
+│   │   │   ├── main-layout/               # Main Layout with Sidebar
+│   │   │   ├── sidebar/                   # Navigation Sidebar
+│   │   │   └── header/                    # Top Header Bar
+│   │   ├── shared/                        # Shared/Reusable Components
 │   │   │   ├── components/
-│   │   │   │   ├── button/
-│   │   │   │   ├── input/
-│   │   │   │   └── modal/
+│   │   │   │   ├── input-field/           # Form Input Component
+│   │   │   │   ├── primary-button/        # Primary Button Component
+│   │   │   │   ├── dabubble-logo/         # App Logo Component
+│   │   │   │   └── legal-information/     # Footer Legal Links
 │   │   │   ├── directives/
 │   │   │   ├── pipes/
-│   │   │   └── utils/
-│   │   ├── models/                        # TypeScript interfaces
-│   │   │   ├── user.model.ts
-│   │   │   ├── channel.model.ts
-│   │   │   ├── message.model.ts
-│   │   │   └── reaction.model.ts
-│   │   ├── app.ts                         # Root component
-│   │   ├── app.config.ts                  # App configuration
-│   │   ├── app.routes.ts                  # Route definitions
-│   │   └── app.scss                       # Root styles
-│   ├── assets/
-│   │   ├── fonts/
-│   │   │   ├── figtree/                   # Figtree font family
-│   │   │   └── nunito/                    # Nunito font family
-│   │   └── images/
-│   │       ├── avatars/                   # User avatars
-│   │       └── icons/                     # App icons
+│   │   │   ├── validators/                # Form Validators
+│   │   │   └── utils/                     # Helper Functions
+│   │   ├── stores/                        # NgRx SignalStore (State Management)
+│   │   │   ├── auth/                      # Auth Store (Modular Structure)
+│   │   │   │   ├── auth.store.ts          # Main store integration
+│   │   │   │   ├── auth.types.ts          # State interface & initial state
+│   │   │   │   ├── auth.helpers.ts        # Mapper & utility functions
+│   │   │   │   ├── auth.login.methods.ts  # Login methods (Email, Google Popup, Anonymous)
+│   │   │   │   ├── auth.signup.methods.ts # Signup & verification
+│   │   │   │   ├── auth.password.methods.ts # Password reset/recovery
+│   │   │   │   └── index.ts               # Barrel export
+│   │   │   ├── user.store.ts              # User Management Store
+│   │   │   ├── channel.store.ts           # Channel Management Store
+│   │   │   ├── message.store.ts           # Message CRUD Store
+│   │   │   └── index.ts                   # Central Barrel Export (export type pattern)
+│   │   ├── app.ts                         # Root Component
+│   │   ├── app.config.ts                  # App Configuration
+│   │   ├── app.routes.ts                  # Route Definitions
+│   │   └── app.scss                       # Root Styles
+│   ├── assets/                            # Static Assets
 │   ├── config/
 │   │   └── environments/
 │   │       ├── env.dev.ts                 # Dev config (not in Git)
@@ -177,16 +190,19 @@ dabubble/
 │   │       ├── env.prod.ts                # Prod config (not in Git)
 │   │       └── env.prod.example.ts        # Prod template
 │   ├── styles/                            # Global SCSS
-│   │   ├── components/                    # Component styles (BEM)
 │   │   ├── _fonts.figtree.scss            # Figtree font-face
 │   │   ├── _fonts.nunito.scss             # Nunito font-face
 │   │   ├── _layout.scss                   # Layout utilities
-│   │   ├── _mixins.scss                   # SCSS mixins
+│   │   ├── _mixins.scss                   # SCSS mixins (breakpoints, buttons, etc.)
 │   │   ├── _typography.scss               # Typography
 │   │   └── _variables.scss                # CSS custom properties
 │   ├── index.html                         # HTML entry point
 │   ├── main.ts                            # Application bootstrap
 │   └── styles.scss                        # Global styles entry
+├── dist/
+│   └── dabubble/
+│       └── browser/
+│           └── .htaccess                  # Apache SPA routing (IONOS hosting)
 ├── .gitignore                             # Git ignore rules
 ├── angular.json                           # Angular workspace config
 ├── package.json                           # Dependencies & scripts
@@ -197,7 +213,83 @@ dabubble/
 
 ---
 
-## 🎨 Design System
+## �️ Architecture
+
+### Modular NgRx SignalStore Pattern
+
+DABubble uses a **modular store structure** for complex features like authentication:
+
+```
+stores/auth/
+├── auth.store.ts              # Main store orchestrator (72 LOC)
+├── auth.types.ts              # State interface & initial state (27 LOC)
+├── auth.helpers.ts            # Mappers & state handlers (74 LOC)
+├── auth.login.methods.ts      # Login methods (93 LOC)
+├── auth.signup.methods.ts     # Signup methods (58 LOC)
+├── auth.password.methods.ts   # Password methods (32 LOC)
+└── index.ts                   # Barrel export
+```
+
+**Benefits:**
+
+- ✅ Single Responsibility: Each file has one clear purpose
+- ✅ Testability: Methods can be tested in isolation
+- ✅ Maintainability: Changes affect only relevant files
+- ✅ Scalability: Easy to add new features
+- ✅ File Size: All files ≤ 100 LOC (meets project standards)
+
+**See:** [STORES-README.md](./src/app/stores/STORES-README.md) for detailed documentation
+
+---
+
+### Authentication Flow
+
+**Google OAuth Strategy: Popup (Not Redirect)**
+
+DABubble uses `signInWithPopup()` for Google authentication instead of `signInWithRedirect()`:
+
+```typescript
+// auth.login.methods.ts
+async loginWithGoogle(): Promise<void> {
+  const provider = new GoogleAuthProvider();
+  await signInWithPopup(auth, provider);  // ✅ Popup approach
+}
+```
+
+**Why Popup?**
+
+- ✅ Better user experience (no page reload)
+- ✅ Works reliably on all hosting providers (Firebase, IONOS, etc.)
+- ✅ No complex redirect handling or sessionStorage flags
+- ✅ Immediate navigation after successful login
+
+**Production Hosting: IONOS Apache**
+
+Production deployment at [dabubble.dev2k.org](https://dabubble.dev2k.org) uses IONOS Apache hosting with `.htaccess` configuration for SPA routing:
+
+```apache
+# .htaccess (dist/dabubble/browser/)
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ index.html [L]
+```
+
+---
+
+### Module READMEs
+
+Each major module has detailed documentation:
+
+- **[CORE-README.md](./src/app/core/CORE-README.md)** - AuthLayoutComponent, Guards, Services
+- **[FEATURES-README.md](./src/app/features/FEATURES-README.md)** - Auth Pages, Chat, Channels
+- **[LAYOUT-README.md](./src/app/layout/LAYOUT-README.md)** - MainLayout, Sidebar, Header
+- **[SHARED-README.md](./src/app/shared/SHARED-README.md)** - Shared UI Components
+- **[STORES-README.md](./src/app/stores/STORES-README.md)** - NgRx SignalStore Architecture
+
+---
+
+## �🎨 Design System
 
 ### Color Palette
 
@@ -337,11 +429,13 @@ ng generate        # Generate components/services/etc.
 ### Code Standards
 
 - **Functions:** Max 14 lines, one task per function
-- **Files:** Max 400 LOC per file
-- **Naming:** camelCase for variables/functions
-- **Types:** TypeScript strict mode, no `any`
+- **Files:** Max 100 LOC for modular stores, max 400 LOC for general files
+- **Naming:** camelCase for variables/functions, PascalCase for classes/components
+- **Types:** TypeScript strict mode, isolatedModules: true, no `any`
 - **Docs:** JSDoc comments for all public methods
 - **CSS:** BEM naming convention
+- **Stores:** Modular structure for complex features (auth/)
+- **Exports:** Use `export type` for interfaces (isolatedModules requirement)
 
 ---
 
@@ -358,9 +452,23 @@ ng generate        # Generate components/services/etc.
 
 ## 📖 Documentation
 
-- [Copilot Angular Standards](.github/prompts/copilot-angular.prompt.md)
-- [Project Requirements](.github/prompts/copilot-project.prompt.md)
-- [Component READMEs](./src/app/)
+### Project Documentation
+
+- **[Main README](README.md)** - This file, project overview
+- **[STRUCTURE-README.md](STRUCTURE-README.md)** - Detailed architecture documentation
+
+### Module Documentation
+
+- **[CORE-README.md](./src/app/core/CORE-README.md)** - Core module (AuthLayout, Guards, Services)
+- **[FEATURES-README.md](./src/app/features/FEATURES-README.md)** - Features (Auth, Chat, Channels)
+- **[LAYOUT-README.md](./src/app/layout/LAYOUT-README.md)** - Main Layout components
+- **[SHARED-README.md](./src/app/shared/SHARED-README.md)** - Shared/Reusable components
+- **[STORES-README.md](./src/app/stores/STORES-README.md)** - NgRx SignalStore architecture
+
+### Development Standards
+
+- **[Copilot Angular Standards](.github/prompts/copilot-angular.prompt.md)** - Coding conventions
+- **[Project Requirements](.github/prompts/copilot-project.prompt.md)** - Feature specifications
 
 ---
 
@@ -397,4 +505,12 @@ This project is licensed under the MIT License.
 ---
 
 **Last Updated:** December 2025
-**Version:** 0.0.0 (In Development)
+**Version:** 0.1.0 (In Active Development)
+
+**Recent Updates:**
+
+- ✅ Modular NgRx SignalStore implementation (auth/)
+- ✅ Google OAuth with Popup strategy (production-ready)
+- ✅ AuthLayoutComponent with Header/Footer
+- ✅ IONOS Apache hosting with .htaccess SPA routing
+- ✅ Comprehensive module documentation (5 README files)

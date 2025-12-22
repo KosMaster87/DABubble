@@ -1,0 +1,30 @@
+<div class="dashboard">
+  <div class="dashboard__container">
+    <!-- Header -->
+    <header class="dashboard__header">
+      <h1 class="dashboard__title">Dashboard</h1>
+      <button class="dashboard__logout-btn" (click)="logout()">Logout</button>
+    </header>
+
+    <!-- Welcome Section -->
+    <section class="dashboard__welcome">
+      <h2 class="dashboard__welcome-title">Welcome, {{ currentUser?.displayName || 'User' }}!</h2>
+      <p class="dashboard__welcome-text">You are now logged in to DABubble.</p>
+
+      @if (currentUser?.photoURL) {
+      <div class="dashboard__avatar">
+        <img
+          [src]="currentUser?.photoURL"
+          [alt]="currentUser?.displayName || 'User Avatar'"
+          class="dashboard__avatar-img"
+        />
+      </div>
+      }
+    </section>
+
+    <!-- Content Placeholder -->
+    <section class="dashboard__content">
+      <p class="dashboard__placeholder">Dashboard content will be added here.</p>
+    </section>
+  </div>
+</div>

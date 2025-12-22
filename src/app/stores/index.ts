@@ -8,7 +8,7 @@
  */
 
 // Store exports
-export { AuthStore } from './auth.store';
+export { AuthStore } from './auth';
 export { UserStore } from './user.store';
 export { UserPresenceStore } from './user-presence.store';
 export { ChannelStore } from './channel.store';
@@ -17,8 +17,8 @@ export { MessageStore } from './message.store';
 export { ChannelMessageStore } from './channel-message.store';
 export { DirectMessageStore } from './direct-message.store';
 
-// State type exports
-export type { AuthState } from './auth.store';
+// Type exports (required by isolatedModules compiler option)
+export type { AuthState } from './auth';
 export type { UserState } from './user.store';
 export type { UserPresenceState } from './user-presence.store';
 export type { ChannelState } from './channel.store';

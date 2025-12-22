@@ -1,0 +1,19 @@
+@use '../../../../styles/mixins' as mix;
+
+.logo {
+  @include mix.flex(row, center, center);
+  gap: var(--space-4);
+
+  &__image {
+    width: clamp(2.2rem, 5vw + 1.5rem, 3.5rem);
+    height: auto;
+  }
+
+  &__text {
+    font-size: clamp(0.75rem, 2vw + 1rem, 2rem);
+    font-family: var(--font-family-primary);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+  }
+}
