@@ -10,15 +10,13 @@ import { noAuthGuard } from '@core/guards/no-auth.guard';
 import { avatarSelectionGuard } from '@core/guards/avatar-selection.guard';
 
 export const routes: Routes = [
-  // Auth Layout (with Header + Footer for all auth/legal pages)
   {
-    path: 'auth',
+    path: '',
     loadComponent: () =>
       import('./layout/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent),
     children: [
-      // Auth Pages (with noAuthGuard - redirects to /dashboard if authenticated)
       {
-        path: 'signin',
+        path: '',
         loadComponent: () =>
           import('./features/auth/pages/signin/signin.component').then((m) => m.SigninComponent),
         canActivate: [noAuthGuard],
@@ -30,7 +28,7 @@ export const routes: Routes = [
         canActivate: [noAuthGuard],
       },
       {
-        path: 'password-forgot',
+        path: 'forgot-password',
         loadComponent: () =>
           import('./features/auth/pages/password-forgot/password-forgot.component').then(
             (m) => m.PasswordForgotComponent
@@ -38,7 +36,7 @@ export const routes: Routes = [
         canActivate: [noAuthGuard],
       },
       {
-        path: 'password-restore',
+        path: 'reset-password',
         loadComponent: () =>
           import('./features/auth/pages/password-restore/password-restore.component').then(
             (m) => m.PasswordRestoreComponent
@@ -51,7 +49,7 @@ export const routes: Routes = [
           import('./features/auth/pages/verify-email/verify-email.component').then(
             (m) => m.VerifyEmailComponent
           ),
-        // No guard - needs oobCode from email link
+        // No guard - needed after signup
       },
       {
         path: 'avatar-selection',
@@ -61,34 +59,16 @@ export const routes: Routes = [
           ),
         canActivate: [avatarSelectionGuard],
       },
-
-      // Default redirect for /auth
-      { path: '', redirectTo: 'signin', pathMatch: 'full' },
-    ],
-  },
-
-  // Legal Pages (public, accessible from anywhere)
-  {
-    path: 'imprint',
-    loadComponent: () =>
-      import('./layout/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent),
-    children: [
+      // Legal Pages (accessible for everyone)
       {
-        path: '',
+        path: 'imprint',
         loadComponent: () =>
           import('./features/legal/pages/imprint/imprint.component').then(
             (m) => m.ImprintComponent
           ),
       },
-    ],
-  },
-  {
-    path: 'privacy-policy',
-    loadComponent: () =>
-      import('./layout/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent),
-    children: [
       {
-        path: '',
+        path: 'privacy-policy',
         loadComponent: () =>
           import('./features/legal/pages/privacy-policy/privacy-policy.component').then(
             (m) => m.PrivacyPolicyComponent
@@ -97,7 +77,7 @@ export const routes: Routes = [
     ],
   },
 
-  // Protected Routes (with authGuard - requires authentication)
+  // Protected Routes (require authentication)
   {
     path: 'dashboard',
     loadComponent: () =>
@@ -107,7 +87,6 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
 
-  // Redirects
-  { path: '', redirectTo: '/auth/signin', pathMatch: 'full' },
-  { path: '**', redirectTo: '/auth/signin' },
+  // Fallback
+  { path: '**', redirectTo: '/' },
 ];

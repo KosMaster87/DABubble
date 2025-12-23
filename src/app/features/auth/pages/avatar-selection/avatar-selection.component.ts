@@ -113,6 +113,6 @@ export class AvatarSelectionComponent {
    */
   async goBack(): Promise<void> {
     await this.authStore.logout();
-    await this.router.navigate(['/auth/signin']);
+    await this.router.navigate(['/']);
   }
 }

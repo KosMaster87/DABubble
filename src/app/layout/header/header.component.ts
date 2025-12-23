@@ -34,12 +34,12 @@ export class HeaderComponent {
 
   /**
    * Computed signal that determines if popup-signup should be shown
-   * Only displays the signup link on the signin page
+   * Only displays the signup link on the signin page (home)
    * @protected
    * @returns {boolean} True if on signin page
    */
   protected showPopupSignup = computed(() => {
     const url = this.currentUrl();
-    return url?.includes('/auth/signin') ?? false;
+    return url === '/' || url === '';
   });
 }

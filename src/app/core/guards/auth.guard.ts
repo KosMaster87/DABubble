@@ -43,7 +43,7 @@ async function checkAuthentication(
   const isAuthenticated = store.isAuthenticated();
 
   if (!isAuthenticated) {
-    router.navigate(['/auth/signin']);
+    router.navigate(['/']);
     return false;
   }
 
@@ -62,19 +62,19 @@ async function checkEmailVerification(auth: Auth, router: Router): Promise<boole
   const user = auth.currentUser;
 
   if (!user) {
-    router.navigate(['/auth/signin']);
+    router.navigate(['/']);
     return false;
   }
 
   await user.reload();
 
   if (!user.emailVerified && !user.isAnonymous) {
-    router.navigate(['/auth/verify-email']);
+    router.navigate(['/verify-email']);
     return false;
   }
 
   if (!user.photoURL && !user.isAnonymous) {
-    router.navigate(['/auth/avatar-selection']);
+    router.navigate(['/avatar-selection']);
     return false;
   }
 

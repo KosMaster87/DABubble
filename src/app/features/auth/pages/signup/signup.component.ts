@@ -83,7 +83,7 @@ export class SignupComponent {
     try {
       const { name, email, password } = this.signupForm.value;
       await this.authStore.signup(email, password, name);
-      await this.router.navigate(['/auth/verify-email']);
+      await this.router.navigate(['/verify-email']);
     } catch (error) {
       console.error('Registration failed:', error);
     } finally {

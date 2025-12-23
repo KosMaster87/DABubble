@@ -22,6 +22,6 @@ export class PopupSignupComponent {
    * @returns {void}
    */
   navigateToSignup(): void {
-    this.router.navigate(['/auth/signup']);
+    this.router.navigate(['/signup']);
   }
 }

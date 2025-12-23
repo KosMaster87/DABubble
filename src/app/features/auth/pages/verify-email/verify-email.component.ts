@@ -50,7 +50,7 @@ export class VerifyEmailComponent {
       const isVerified = this.auth.currentUser?.emailVerified;
 
       if (isVerified) {
-        await this.router.navigate(['/auth/avatar-selection']);
+        await this.router.navigate(['/avatar-selection']);
       } else {
         alert('Please verify your email first by clicking the link in your inbox.');
       }
@@ -87,6 +87,6 @@ export class VerifyEmailComponent {
    */
   async goToSignin(): Promise<void> {
     await this.auth.signOut();
-    await this.router.navigate(['/auth/signin']);
+    await this.router.navigate(['/']);
   }
 }

@@ -36,6 +36,6 @@ export class DashboardComponent {
    */
   async logout(): Promise<void> {
     await this.authStore.logout();
-    await this.router.navigate(['/auth/signin']);
+    await this.router.navigate(['/']);
   }
 }

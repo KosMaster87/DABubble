@@ -33,14 +33,14 @@ async function checkAvatarSelectionAccess(auth: Auth, router: Router): Promise<b
   const user = auth.currentUser;
 
   if (!user) {
-    router.navigate(['/auth/signin']);
+    router.navigate(['/']);
     return false;
   }
 
   await user.reload();
 
   if (!user.emailVerified) {
-    router.navigate(['/auth/verify-email']);
+    router.navigate(['/verify-email']);
     return false;
   }
 

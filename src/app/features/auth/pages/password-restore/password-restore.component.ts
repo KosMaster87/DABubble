@@ -47,7 +47,7 @@ export class PasswordRestoreComponent {
   checkOobCode(): void {
     const code = this.route.snapshot.queryParamMap.get('oobCode');
     if (!code) {
-      this.router.navigate(['/auth/signin']);
+      this.router.navigate(['/']);
       return;
     }
     this.oobCode.set(code);
@@ -112,7 +112,7 @@ export class PasswordRestoreComponent {
    * @returns {Promise<void>}
    */
   async navigateToSignin(): Promise<void> {
-    await this.router.navigate(['/auth/signin']);
+    await this.router.navigate(['/']);
   }
 
   /**

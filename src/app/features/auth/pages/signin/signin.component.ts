@@ -147,7 +147,7 @@ export class SigninComponent {
    * @returns {void}
    */
   navigateToPasswordForgot(): void {
-    this.router.navigate(['/auth/password-forgot']);
+    this.router.navigate(['/forgot-password']);
   }
 
   /**
