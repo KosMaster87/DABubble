@@ -106,11 +106,13 @@ export class AvatarSelectionComponent {
   }
 
   /**
-   * Navigate back to signup
+   * Logout and navigate back to signin
+   * @async
    * @function goBack
-   * @returns {void}
+   * @returns {Promise<void>}
    */
-  goBack(): void {
-    this.router.navigate(['/auth/signup']);
+  async goBack(): Promise<void> {
+    await this.authStore.logout();
+    await this.router.navigate(['/auth/signin']);
   }
 }

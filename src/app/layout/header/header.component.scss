@@ -3,7 +3,6 @@
 .header {
   display: none; // Hidden on mobile
   width: 100%;
-  padding: var(--space-6);
 
   // Tablet - 768px+
   @include mix.tablet {
@@ -11,16 +10,10 @@
   }
 
   &__content {
-    @include mix.flex(row, center, space-between);
+    @include mix.flex(row, space-between, center);
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-  }
-
-  &__logo {
-    display: flex;
-  }
-
-  &__popup-signup {
-    display: flex;
+    padding: var(--space-4);
   }
 }

@@ -7,10 +7,11 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthStore } from '@stores/auth';
+import { SecondaryButtonComponent } from '@shared/components';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [SecondaryButtonComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

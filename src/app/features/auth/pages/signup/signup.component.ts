@@ -5,7 +5,6 @@
  */
 
 import { Component, inject, signal } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthStore } from '@stores/auth';
@@ -73,6 +72,7 @@ export class SignupComponent {
 
   /**
    * Perform registration with AuthStore
+   * Routes to verify-email page after successful signup
    * @async
    * @function performRegistration
    * @returns {Promise<void>}
@@ -83,7 +83,7 @@ export class SignupComponent {
     try {
       const { name, email, password } = this.signupForm.value;
       await this.authStore.signup(email, password, name);
-      await this.router.navigate(['/auth/avatar-selection']);
+      await this.router.navigate(['/auth/verify-email']);
     } catch (error) {
       console.error('Registration failed:', error);
     } finally {

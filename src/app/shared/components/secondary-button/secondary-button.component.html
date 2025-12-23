@@ -1,0 +1,11 @@
+<button
+  class="secondary-button"
+  [type]="type()"
+  [disabled]="disabled() || loading()"
+  (click)="handleClick()"
+>
+  @if (loading()) {
+  <span class="secondary-button__spinner"></span>
+  }
+  {{ label() }}
+</button>

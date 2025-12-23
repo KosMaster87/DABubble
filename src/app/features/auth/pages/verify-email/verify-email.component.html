@@ -1,29 +1,41 @@
 <div class="verify-email">
   <div class="verify-email__container">
-    @if (isVerifying()) {
-    <!-- Loading State -->
-    <div class="verify-email__loading">
-      <h1 class="verify-email__title">Verifying Email...</h1>
-      <p class="verify-email__subtitle">Please wait while we verify your email address.</p>
-    </div>
-    } @else if (verificationSuccess()) {
-    <!-- Success State -->
-    <div class="verify-email__success">
-      <h1 class="verify-email__title">Email Verified!</h1>
+    <!-- Header -->
+    <header class="verify-email__header">
+      <h1 class="verify-email__title">Verify Your Email</h1>
       <p class="verify-email__subtitle">
-        Your email has been successfully verified. You can now sign in to your account.
+        We've sent a verification email to <strong>{{ userEmail() }}</strong>
       </p>
-      <app-primary-button label="Go to Sign In" (clicked)="navigateToSignin()" />
-    </div>
-    } @else if (verificationError()) {
-    <!-- Error State -->
-    <div class="verify-email__error">
-      <h1 class="verify-email__title">Verification Failed</h1>
-      <p class="verify-email__subtitle">
-        We couldn't verify your email. The link may have expired or is invalid.
+    </header>
+
+    <!-- Instructions -->
+    <section class="verify-email__instructions">
+      <div class="verify-email__icon">
+        <img src="/img/mail.svg" alt="Email Icon" />
+      </div>
+      <p class="verify-email__text">
+        Please check your inbox and click the verification link to continue.
       </p>
-      <app-primary-button label="Back to Sign In" (clicked)="navigateToSignin()" />
+      <p class="verify-email__text verify-email__text--small">
+        After verifying your email, click the button below to continue with avatar selection.
+      </p>
+    </section>
+
+    <!-- Actions -->
+    <div class="verify-email__actions">
+      <app-primary-button
+        label="I've Verified My Email"
+        [loading]="isChecking()"
+        (clicked)="checkVerification()"
+      />
+
+      @if (emailSent()) {
+      <p class="verify-email__success">✓ Verification email sent!</p>
+      } @else {
+      <app-guest-button label="Resend verification email" (clicked)="resendVerificationEmail()" />
+      }
+
+      <app-secondary-button label="Back to Sign In" (clicked)="goToSignin()" />
     </div>
-    }
   </div>
 </div>

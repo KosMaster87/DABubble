@@ -1,47 +1,46 @@
 /**
  * @fileoverview Avatar Selection Guard
- * @description Only allows access to avatar selection if user has no avatar yet
+ * @description Only allows access to avatar selection if user is authenticated and email is verified
  * @module guards/avatar-selection
  */
 
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthStore } from '@stores/auth';
+import { Auth } from '@angular/fire/auth';
 
 /**
  * Guard to protect avatar selection page
- * Only allows access if user is authenticated but has no avatar
+ * Requires authentication AND email verification
  * @function avatarSelectionGuard
  * @returns {boolean | Promise<boolean>} True if user can access, otherwise redirects
  */
 export const avatarSelectionGuard: CanActivateFn = async () => {
   const router = inject(Router);
-  const store = inject(AuthStore);
+  const auth = inject(Auth);
 
-  return await checkAvatarSelectionAccess(store, router);
+  return await checkAvatarSelectionAccess(auth, router);
 };
 
 /**
  * Check if user can access avatar selection
  * @async
  * @function checkAvatarSelectionAccess
- * @param {InstanceType<typeof AuthStore>} store - Auth store instance
+ * @param {Auth} auth - Firebase Auth instance
  * @param {Router} router - Angular router instance
  * @returns {Promise<boolean>} True if can access, false otherwise
  */
-async function checkAvatarSelectionAccess(
-  store: InstanceType<typeof AuthStore>,
-  router: Router
-): Promise<boolean> {
-  while (store.isLoading()) {
-    await new Promise((resolve) => setTimeout(resolve, 50));
+async function checkAvatarSelectionAccess(auth: Auth, router: Router): Promise<boolean> {
+  const user = auth.currentUser;
+
+  if (!user) {
+    router.navigate(['/auth/signin']);
+    return false;
   }
 
-  const isAuthenticated = store.isAuthenticated();
-  const user = store.user();
+  await user.reload();
 
-  if (!isAuthenticated || !user) {
-    router.navigate(['/auth/signin']);
+  if (!user.emailVerified) {
+    router.navigate(['/auth/verify-email']);
     return false;
   }
 

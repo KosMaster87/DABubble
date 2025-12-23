@@ -1,0 +1,12 @@
+<button
+  [type]="type()"
+  [disabled]="disabled() || loading()"
+  (click)="handleClick()"
+  class="guest-button"
+>
+  @if (loading()) {
+  <span class="guest-button__spinner"></span>
+  } @else {
+  {{ label() }}
+  }
+</button>

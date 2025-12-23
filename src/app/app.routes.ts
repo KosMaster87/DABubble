@@ -62,24 +62,38 @@ export const routes: Routes = [
         canActivate: [avatarSelectionGuard],
       },
 
-      // Legal Pages (public, no guard)
+      // Default redirect for /auth
+      { path: '', redirectTo: 'signin', pathMatch: 'full' },
+    ],
+  },
+
+  // Legal Pages (public, accessible from anywhere)
+  {
+    path: 'imprint',
+    loadComponent: () =>
+      import('./layout/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent),
+    children: [
       {
-        path: 'imprint',
+        path: '',
         loadComponent: () =>
           import('./features/legal/pages/imprint/imprint.component').then(
             (m) => m.ImprintComponent
           ),
       },
+    ],
+  },
+  {
+    path: 'privacy-policy',
+    loadComponent: () =>
+      import('./layout/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent),
+    children: [
       {
-        path: 'privacy-police',
+        path: '',
         loadComponent: () =>
-          import('./features/legal/pages/privacy-police/privacy-police.component').then(
-            (m) => m.PrivacyPoliceComponent
+          import('./features/legal/pages/privacy-policy/privacy-policy.component').then(
+            (m) => m.PrivacyPolicyComponent
           ),
       },
-
-      // Default redirect for /auth
-      { path: '', redirectTo: 'signin', pathMatch: 'full' },
     ],
   },
 

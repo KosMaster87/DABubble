@@ -9,11 +9,15 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthStore } from '@stores/auth';
 import { slideDownAnimation } from '@shared/animations';
-import { InputFieldComponent, PrimaryButtonComponent } from '@shared/components';
+import {
+  InputFieldComponent,
+  PrimaryButtonComponent,
+  GuestButtonComponent,
+} from '@shared/components';
 
 @Component({
   selector: 'app-signin',
-  imports: [ReactiveFormsModule, InputFieldComponent, PrimaryButtonComponent],
+  imports: [ReactiveFormsModule, InputFieldComponent, PrimaryButtonComponent, GuestButtonComponent],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss',
   animations: [slideDownAnimation],

@@ -1,7 +1,6 @@
 @use '../../../../../styles/mixins' as mix;
 
 .dashboard {
-  @include mix.flex-center;
   min-height: 100vh;
   width: 100%;
   background-color: var(--background-color);
@@ -9,8 +8,9 @@
   &__container {
     @include mix.flex-column;
     width: 100%;
-    max-width: 75rem;
+    max-width: 1400px;
     min-height: 100vh;
+    margin: 0 auto;
     padding: var(--space-6);
     gap: var(--space-6);
 
@@ -31,24 +31,6 @@
     @include mix.heading-2;
     margin: 0;
     color: var(--primary-color);
-  }
-
-  &__logout-btn {
-    padding: var(--space-3) var(--space-5);
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    border-radius: var(--radius-full);
-    font-family: var(--font-family-primary);
-    font-size: var(--font-size-base);
-    font-weight: 600;
-    cursor: pointer;
-    @include mix.transition(background-color, color);
-
-    &:hover {
-      background-color: var(--primary-color);
-      color: white;
-    }
   }
 
   // ===== WELCOME =====

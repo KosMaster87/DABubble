@@ -56,22 +56,21 @@
       <span>Sign in with Google</span>
     </button>
 
-    <!-- Sign In and Guest Login Buttons -->
-    <div class="signin__action-buttons">
+    <div class="signin__button-wrapper">
       <app-primary-button
         type="submit"
         label="Sign In"
         [disabled]="signinForm.invalid || isSubmitting()"
         [loading]="isSubmitting()"
       />
-      <button
+
+      <app-guest-button
         type="button"
-        class="signin__guest-btn"
-        (click)="onGuestLogin()"
+        label="Guest Login"
         [disabled]="isSubmitting()"
-      >
-        Guest Login
-      </button>
+        [loading]="false"
+        (clicked)="onGuestLogin()"
+      />
     </div>
   </form>
 </div>

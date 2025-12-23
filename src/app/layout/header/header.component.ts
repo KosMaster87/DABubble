@@ -4,19 +4,42 @@
  * @module HeaderComponent
  */
 
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map, startWith } from 'rxjs';
 import { DABubbleLogoComponent } from '@shared/components/dabubble-logo/dabubble-logo.component';
 import { PopupSignupComponent } from '@features/auth/components/popup-signup/popup-signup.component';
 
-/**
- * Header Component
- * @class HeaderComponent
- * @description Standalone component that displays logo and popup-signup (desktop)
- */
 @Component({
   selector: 'app-header',
   imports: [DABubbleLogoComponent, PopupSignupComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  private router = inject(Router);
+
+  /**
+   * Signal tracking the current URL from router navigation events
+   * @private
+   */
+  private currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.router.url),
+      startWith(this.router.url)
+    )
+  );
+
+  /**
+   * Computed signal that determines if popup-signup should be shown
+   * Only displays the signup link on the signin page
+   * @protected
+   * @returns {boolean} True if on signin page
+   */
+  protected showPopupSignup = computed(() => {
+    const url = this.currentUrl();
+    return url?.includes('/auth/signin') ?? false;
+  });
+}

@@ -19,15 +19,3 @@ body {
   color: var(--text-color);
   transition: background-color var(--transition-base), color var(--transition-base);
 }
-
-section {
-  padding-block: var(--space-8);
-
-  &:focus {
-    outline: none;
-  }
-
-  &:focus-visible {
-    outline: none;
-  }
-}

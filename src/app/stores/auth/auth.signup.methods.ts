@@ -9,6 +9,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   applyActionCode,
+  sendEmailVerification,
 } from '@angular/fire/auth';
 import { patchState } from '@ngrx/signals';
 
@@ -29,6 +30,7 @@ export const createSignupMethods = (
 ) => ({
   /**
    * Signup new user with email and password
+   * Sends verification email but does NOT auto-login
    * @async
    * @param {string} email - User email address
    * @param {string} password - User password
@@ -39,7 +41,8 @@ export const createSignupMethods = (
     try {
       const credential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(credential.user, { displayName });
-      handleSuccessfulAuth(credential.user);
+      await sendEmailVerification(credential.user);
+      patchState(store, { isLoading: false });
     } catch (error) {
       handleAuthError(error, 'Registration failed');
     }
@@ -55,13 +58,22 @@ export const createSignupMethods = (
   },
 
   /**
-   * Update user profile
+   * Update user profile and sync with store
    * @async
    * @param {Object} profile - Profile data to update
    */
   async updateUserProfile(profile: { displayName?: string; photoURL?: string }): Promise<void> {
-    const currentUser = auth.currentUser;
-    if (!currentUser) throw new Error('No user logged in');
-    await updateProfile(currentUser, profile);
+    patchState(store, { isLoading: true });
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error('No user logged in');
+
+      await updateProfile(currentUser, profile);
+      await currentUser.reload();
+
+      handleSuccessfulAuth(currentUser);
+    } catch (error) {
+      handleAuthError(error, 'Profile update failed');
+    }
   },
 });

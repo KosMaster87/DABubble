@@ -1,6 +1,8 @@
 <div class="header">
   <div class="header__content">
-    <app-dabubble-logo class="header__logo" />
-    <app-popup-signup class="header__popup-signup" />
+    <app-dabubble-logo />
+    @if (showPopupSignup()) {
+    <app-popup-signup />
+    }
   </div>
 </div>

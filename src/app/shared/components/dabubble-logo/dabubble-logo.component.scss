@@ -3,6 +3,7 @@
 .logo {
   @include mix.flex(row, center, center);
   gap: var(--space-4);
+  padding: var(--space-4);
 
   &__image {
     width: clamp(2.2rem, 5vw + 1.5rem, 3.5rem);

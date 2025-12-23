@@ -95,7 +95,24 @@
   &__forgot {
     display: flex;
     justify-content: center;
-    margin-top: calc(var(--space-2) * -1);
+  }
+
+  &__link {
+    @include mix.body;
+    font-family: var(--font-family-secondary);
+    color: var(--link-color);
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    cursor: pointer;
+    padding: var(--space-2) var(--space-3);
+    @include mix.transition(color, background-color);
+
+    &:hover {
+      color: var(--link-hover-color);
+      background-color: var(--link-hover-bg);
+      text-decoration: none;
+    }
   }
 
   // ===== DIVIDER =====
@@ -109,16 +126,18 @@
     &::after {
       content: '';
       flex: 1;
-      height: 2px;
-      background-color: var(--border-color);
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-color), transparent);
+      opacity: 0.6;
     }
 
     span {
       padding: 0 var(--space-4);
       color: var(--text-secondary);
-      font-size: var(--font-size-sm);
-      font-weight: 700;
+      font-size: var(--font-size-xs);
+      font-weight: 500;
       text-transform: uppercase;
+      opacity: 0.7;
     }
   }
 
@@ -154,50 +173,11 @@
     height: 1.25rem;
   }
 
-  // ===== ACTION BUTTONS =====
-  &__action-buttons {
+  // ===== BUTTON WRAPPER =====
+  &__button-wrapper {
+    width: 100%;
     display: flex;
-    gap: var(--space-3);
-    width: 100%;
-    flex-direction: column;
-
-    // Tablet - 768px+
-    @include mix.tablet {
-      flex-direction: row;
-      gap: var(--space-4);
-    }
-  }
-
-  &__guest-btn {
-    @include mix.flex-center;
-    width: 100%;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-4);
-    border: 2px solid var(--primary-color);
-    border-radius: var(--radius-full);
-    background-color: transparent;
-    color: var(--primary-color);
-    font-family: var(--font-family-primary);
-    font-size: var(--font-size-base);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background-color: var(--primary-color);
-      color: var(--container-bg);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    &:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    justify-content: center;
+    gap: 1rem;
   }
 }
