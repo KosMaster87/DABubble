@@ -1,76 +1,78 @@
-<div class="signin__container">
-  <!-- Header -->
-  <header class="signin__header">
-    <h1 class="signin__title">Welcome Back</h1>
-    <p class="signin__subtitle">
-      Sign in to your DABubble account to continue chatting with your team.
-    </p>
-  </header>
+<div class="signin">
+  <div class="signin__container">
+    <!-- Header -->
+    <header class="signin__header">
+      <h1 class="signin__title">Welcome Back</h1>
+      <p class="signin__subtitle">
+        Sign in to your DABubble account to continue chatting with your team.
+      </p>
+    </header>
 
-  <!-- Signin Form -->
-  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="signin__form">
-    <!-- Email Input -->
-    <app-input-field
-      [control]="$any(signinForm.controls['email'])"
-      id="email"
-      type="email"
-      placeholder="example@email.com"
-      icon="/img/formfield/mail-default.svg"
-      [errorMessages]="{
-        required: 'Email is required.',
-        email: 'Please enter a valid email address.'
-      }"
-    />
-
-    <!-- Password Input -->
-    <app-input-field
-      [control]="$any(signinForm.controls['password'])"
-      id="password"
-      [type]="hidePassword() ? 'password' : 'text'"
-      placeholder="Your password"
-      icon="/img/formfield/lock-default.svg"
-      [errorMessages]="{
-        required: 'Password is required.',
-        minlength: 'Password must be at least 6 characters.'
-      }"
-    />
-
-    <!-- Forgot Password Link -->
-    <div class="signin__forgot">
-      <a (click)="navigateToPasswordForgot()" class="signin__link"> Forgot password? </a>
-    </div>
-
-    <!-- Divider -->
-    <div class="signin__divider">
-      <span>or</span>
-    </div>
-
-    <!-- Google Login Button -->
-    <button
-      type="button"
-      class="signin__google-btn"
-      (click)="onGoogleLogin()"
-      [disabled]="isSubmitting()"
-    >
-      <img src="/img/logos/Google.svg" alt="Google" class="signin__google-icon" />
-      <span>Sign in with Google</span>
-    </button>
-
-    <div class="signin__button-wrapper">
-      <app-primary-button
-        type="submit"
-        label="Sign In"
-        [disabled]="signinForm.invalid || isSubmitting()"
-        [loading]="isSubmitting()"
+    <!-- Signin Form -->
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="signin__form">
+      <!-- Email Input -->
+      <app-input-field
+        [control]="$any(signinForm.controls['email'])"
+        id="email"
+        type="email"
+        placeholder="example@email.com"
+        icon="/img/formfield/mail-default.svg"
+        [errorMessages]="{
+          required: 'Email is required.',
+          email: 'Please enter a valid email address.'
+        }"
       />
 
-      <app-guest-button
+      <!-- Password Input -->
+      <app-input-field
+        [control]="$any(signinForm.controls['password'])"
+        id="password"
+        [type]="hidePassword() ? 'password' : 'text'"
+        placeholder="Your password"
+        icon="/img/formfield/lock-default.svg"
+        [errorMessages]="{
+          required: 'Password is required.',
+          minlength: 'Password must be at least 6 characters.'
+        }"
+      />
+
+      <!-- Forgot Password Link -->
+      <div class="signin__forgot">
+        <a (click)="navigateToPasswordForgot()" class="signin__link"> Forgot password? </a>
+      </div>
+
+      <!-- Divider -->
+      <div class="signin__divider">
+        <span>or</span>
+      </div>
+
+      <!-- Google Login Button -->
+      <button
         type="button"
-        label="Guest Login"
+        class="signin__google-btn"
+        (click)="onGoogleLogin()"
         [disabled]="isSubmitting()"
-        [loading]="false"
-        (clicked)="onGuestLogin()"
-      />
-    </div>
-  </form>
+      >
+        <img src="/img/logos/Google.svg" alt="Google" class="signin__google-icon" />
+        <span>Sign in with Google</span>
+      </button>
+
+      <div class="signin__button-wrapper">
+        <app-primary-button
+          type="submit"
+          label="Sign In"
+          [disabled]="signinForm.invalid || isSubmitting()"
+          [loading]="isSubmitting()"
+        />
+
+        <app-guest-button
+          type="button"
+          label="Guest Login"
+          [disabled]="isSubmitting()"
+          [loading]="false"
+          (clicked)="onGuestLogin()"
+        />
+      </div>
+    </form>
+  </div>
 </div>

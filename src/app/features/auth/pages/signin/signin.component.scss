@@ -1,6 +1,8 @@
 @use '../../../../../styles/mixins' as mix;
 
 .signin {
+  @include mix.flex-center;
+
   &__container {
     @include mix.flex-center;
     flex-direction: column;

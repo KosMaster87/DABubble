@@ -2,9 +2,6 @@
 
 .verify-email {
   @include mix.flex-center;
-  width: 100%;
-  padding: var(--spacing-md);
-  background-color: var(--background-color);
 
   &__container {
     @include mix.flex-center;

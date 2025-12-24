@@ -1,77 +1,79 @@
-<div class="signup__container">
-  <!-- Header -->
-  <header class="signup__header">
-    <div class="signup__back">
-      <app-back-button label="Back" (clicked)="goBack()" />
-    </div>
-    <h1 class="signup__title">Create Account</h1>
-    <p class="signup__subtitle">
-      You can create your new DABubble account using your name and email address.
-    </p>
-  </header>
+<div class="signup">
+  <div class="signup__container">
+    <!-- Header -->
+    <header class="signup__header">
+      <div class="signup__back">
+        <app-back-button label="Back" (clicked)="goBack()" />
+      </div>
+      <h1 class="signup__title">Create Account</h1>
+      <p class="signup__subtitle">
+        You can create your new DABubble account using your name and email address.
+      </p>
+    </header>
 
-  <!-- Signup Form -->
-  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup__form">
-    <!-- Name Input -->
-    <app-input-field
-      [control]="$any(signupForm.controls['name'])"
-      id="name"
-      type="text"
-      placeholder="Your full name"
-      icon="/img/formfield/person-default.svg"
-      [errorMessages]="{
-        required: 'Name is required.',
-        minlength: 'Name must be at least 2 characters.'
-      }"
-    />
-
-    <!-- Email Input -->
-    <app-input-field
-      [control]="$any(signupForm.controls['email'])"
-      id="email"
-      type="email"
-      placeholder="example@email.com"
-      icon="/img/formfield/mail-default.svg"
-      [errorMessages]="{
-        required: 'Email is required.',
-        email: 'Please enter a valid email address.'
-      }"
-    />
-
-    <!-- Password Input -->
-    <app-input-field
-      [control]="$any(signupForm.controls['password'])"
-      id="password"
-      type="password"
-      placeholder="At least 6 characters"
-      icon="/img/formfield/lock-default.svg"
-      [errorMessages]="{
-        required: 'Password is required.',
-        minlength: 'Password must be at least 6 characters.'
-      }"
-    />
-
-    <!-- Privacy Checkbox -->
-    <app-checkbox-field
-      [control]="$any(signupForm.controls['privacy'])"
-      id="privacy"
-      [errorMessages]="{
-        required: 'Please accept the privacy policy.',
-        requiredTrue: 'Please accept the privacy policy.'
-      }"
-    >
-      <span class="signup__checkbox-text">I agree to the</span>
-      <a href="/privacy-policy" class="signup__link">Privacy policy.</a>
-    </app-checkbox-field>
-
-    <!-- Submit Button -->
-    <div class="signup__button-wrapper">
-      <app-primary-button
-        type="submit"
-        label="Continue"
-        [disabled]="signupForm.invalid || isSubmitting()"
-        [loading]="isSubmitting()"
+    <!-- Signup Form -->
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup__form">
+      <!-- Name Input -->
+      <app-input-field
+        [control]="$any(signupForm.controls['name'])"
+        id="name"
+        type="text"
+        placeholder="Your full name"
+        icon="/img/formfield/person-default.svg"
+        [errorMessages]="{
+          required: 'Name is required.',
+          minlength: 'Name must be at least 2 characters.'
+        }"
       />
-    </div>
-  </form>
+
+      <!-- Email Input -->
+      <app-input-field
+        [control]="$any(signupForm.controls['email'])"
+        id="email"
+        type="email"
+        placeholder="example@email.com"
+        icon="/img/formfield/mail-default.svg"
+        [errorMessages]="{
+          required: 'Email is required.',
+          email: 'Please enter a valid email address.'
+        }"
+      />
+
+      <!-- Password Input -->
+      <app-input-field
+        [control]="$any(signupForm.controls['password'])"
+        id="password"
+        type="password"
+        placeholder="At least 6 characters"
+        icon="/img/formfield/lock-default.svg"
+        [errorMessages]="{
+          required: 'Password is required.',
+          minlength: 'Password must be at least 6 characters.'
+        }"
+      />
+
+      <!-- Privacy Checkbox -->
+      <app-checkbox-field
+        [control]="$any(signupForm.controls['privacy'])"
+        id="privacy"
+        [errorMessages]="{
+          required: 'Please accept the privacy policy.',
+          requiredTrue: 'Please accept the privacy policy.'
+        }"
+      >
+        <span class="signup__checkbox-text">I agree to the</span>
+        <a href="/privacy-policy" class="signup__link">Privacy policy.</a>
+      </app-checkbox-field>
+
+      <!-- Submit Button -->
+      <div class="signup__button-wrapper">
+        <app-primary-button
+          type="submit"
+          label="Continue"
+          [disabled]="signupForm.invalid || isSubmitting()"
+          [loading]="isSubmitting()"
+        />
+      </div>
+    </form>
+  </div>
 </div>
