@@ -1,19 +1,29 @@
 @use '../../../styles/mixins' as mix;
 
 .header {
-  display: none; // Hidden on mobile
   width: 100%;
 
-  // Tablet - 768px+
-  @include mix.tablet {
-    display: block;
-  }
-
   &__content {
-    @include mix.flex(row, space-between, center);
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
     padding: var(--space-4);
+
+    // Mobile: Center logo only
+    @include mix.flex-center;
+
+    // Tablet+: Logo left, Popup-Signup right
+    @include mix.tablet {
+      @include mix.flex(row, space-between, center);
+    }
+
+    // Hide popup-signup on mobile (shown in footer instead)
+    app-popup-signup {
+      display: none;
+
+      @include mix.tablet {
+        display: flex;
+      }
+    }
   }
 }

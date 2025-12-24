@@ -25,14 +25,8 @@
     // Tablet - 768px+
     @include mix.tablet {
       width: min(70%, 28rem);
-      min-height: 30rem;
-      padding: var(--space-8) 0;
-      gap: var(--space-4);
-    }
-
-    // Tablet Landscape - 1024px+
-    @include mix.tablet-landscape {
-      width: 30rem;
+      padding: var(--space-6) 0;
+      gap: var(--space-3);
     }
   }
 
@@ -45,7 +39,7 @@
     column-gap: var(--space-2);
 
     @include mix.tablet {
-      column-gap: var(--space-4);
+      column-gap: var(--space-3);
     }
   }
 
@@ -61,8 +55,8 @@
     text-align: center;
     color: var(--primary-color);
 
-    @include mix.laptop {
-      font-size: var(--font-size-2xl);
+    @include mix.tablet {
+      font-size: var(--font-size-xl);
     }
   }
 
@@ -70,7 +64,11 @@
   &__preview {
     @include mix.flex-center;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-2);
+
+    @include mix.tablet {
+      gap: var(--space-3);
+    }
   }
 
   &__preview-img {
@@ -81,8 +79,8 @@
     border: 3px solid var(--primary-color);
 
     @include mix.tablet {
-      width: 8rem;
-      height: 8rem;
+      width: 6rem;
+      height: 6rem;
     }
   }
 
@@ -90,29 +88,41 @@
     @include mix.heading-4;
     margin: 0;
     color: var(--text-primary);
+
+    @include mix.tablet {
+      font-size: var(--font-size-lg);
+    }
   }
 
   // ===== GRID SECTION =====
   &__grid-section {
     @include mix.flex-column-center;
-    width: 90%;
-    gap: var(--space-3);
+    width: 80%;
+    gap: var(--space-2);
+
+    @include mix.tablet {
+      gap: var(--space-3);
+    }
   }
 
   &__grid-title {
     @include mix.subtitle;
     margin: 0;
     color: var(--text-secondary);
+
+    @include mix.tablet {
+      font-size: var(--font-size-base);
+    }
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-3);
-    width: 100%;
+    width: 90%;
 
     @include mix.tablet {
-      gap: var(--space-4);
+      gap: var(--space-3);
     }
   }
 

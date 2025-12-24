@@ -1,6 +1,8 @@
 <div class="footer">
   <div class="footer__content">
+    @if (showPopupSignup()) {
     <app-popup-signup class="footer__popup-signup" />
+    }
     <app-legal-information class="footer__legal" />
   </div>
 </div>
