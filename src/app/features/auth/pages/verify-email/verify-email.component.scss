@@ -80,7 +80,7 @@
     align-items: center;
     gap: var(--space-2);
     text-align: center;
-    width: 100%;
+    width: 90%;
   }
 
   // ===== INSTRUCTIONS =====
@@ -90,7 +90,7 @@
     align-items: center;
     gap: var(--space-3);
     text-align: center;
-    width: 100%;
+    width: 90%;
   }
 
   &__icon {
@@ -117,7 +117,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-3);
-    width: 100%;
+    width: 90%;
   }
 
   &__success {
