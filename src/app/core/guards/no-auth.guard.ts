@@ -39,7 +39,7 @@ async function checkNoAuthentication(
   const isAuthenticated = store.isAuthenticated();
 
   if (isAuthenticated) {
-    router.navigate(['/dashboard']);
+    await router.navigate(['/dashboard']);
     return false;
   }
 

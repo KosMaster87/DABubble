@@ -12,13 +12,18 @@
     text-align: center;
 
     // Mobile Portrait - 320px+
-    width: min(90%, 20rem);
+    width: min(100%, 20rem);
     padding: var(--space-8) var(--space-6);
     gap: var(--space-6);
 
+    // Mobile Landscape - 568px+
+    @include mix.mobile-landscape {
+      width: min(90%, 24rem);
+    }
+
     // Tablet - 768px+
     @include mix.tablet {
-      width: min(70%, 28rem);
+      width: min(85%, 28rem);
       padding: var(--space-10) var(--space-8);
       gap: var(--space-8);
     }

@@ -98,6 +98,6 @@ export class SignupComponent {
    * @returns {void}
    */
   goBack(): void {
-    this.router.navigate(['/auth/signin']);
+    this.router.navigate(['/']);
   }
 }

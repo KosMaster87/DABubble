@@ -21,9 +21,9 @@
   }
 
   // Very small screens - reduce padding even more
-  @media screen and (max-width: 350px) {
-    padding: 0.875rem 0.5rem;
-  }
+  // @media screen and (max-width: 350px) {
+  //   padding: 0.875rem 0.5rem;
+  // }
 
   &:hover:not(:disabled) {
     background-color: var(--button-bg-hover);
