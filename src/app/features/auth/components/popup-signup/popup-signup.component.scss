@@ -11,26 +11,4 @@
     @include mix.body;
     color: var(--text-secondary);
   }
-
-  &__link {
-    @include mix.body;
-    font-family: var(--font-family-secondary);
-    color: var(--link-color);
-    text-decoration: none;
-    border-radius: var(--radius-full);
-    white-space: nowrap;
-    cursor: pointer;
-    padding: 0.625rem 1.25rem;
-    border: 1px solid transparent;
-    background-color: transparent;
-    font-weight: 400;
-    @include mix.transition(color, border-color, font-weight);
-
-    &:hover {
-      color: var(--link-hover-color);
-      border-color: #adb0d9;
-      font-weight: 400;
-      text-decoration: none;
-    }
-  }
 }

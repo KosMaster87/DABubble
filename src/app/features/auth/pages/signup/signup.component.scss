@@ -128,6 +128,9 @@
     padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-full);
     white-space: nowrap;
+    background: transparent;
+    border: none;
+    cursor: pointer;
     @include mix.transition(color, background-color);
 
     &:hover {

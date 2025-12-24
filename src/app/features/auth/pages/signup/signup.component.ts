@@ -5,7 +5,7 @@
  */
 
 import { Component, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthStore } from '@stores/auth';
 import { slideDownAnimation } from '@shared/animations';
@@ -20,6 +20,7 @@ import {
   selector: 'app-signup',
   imports: [
     ReactiveFormsModule,
+    RouterLink,
     InputFieldComponent,
     CheckboxFieldComponent,
     PrimaryButtonComponent,

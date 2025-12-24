@@ -11,3 +11,4 @@ export * from './secondary-button/secondary-button.component';
 export * from './guest-button/guest-button.component';
 export * from './back-button/back-button.component';
 export * from './cancel-button/cancel-button.component';
+export * from './link-button/link-button.component';

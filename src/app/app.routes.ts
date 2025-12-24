@@ -74,6 +74,14 @@ export const routes: Routes = [
             (m) => m.PrivacyPolicyComponent
           ),
       },
+      // 404 Page (accessible for everyone)
+      {
+        path: 'not-found',
+        loadComponent: () =>
+          import('./features/auth/pages/not-found/not-found.component').then(
+            (m) => m.NotFoundComponent
+          ),
+      },
     ],
   },
 
@@ -87,6 +95,6 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
 
-  // Fallback
-  { path: '**', redirectTo: '/' },
+  // Wildcard - catch all unknown routes
+  { path: '**', redirectTo: '/not-found' },
 ];

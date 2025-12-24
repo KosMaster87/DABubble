@@ -62,7 +62,9 @@
         }"
       >
         <span class="signup__checkbox-text">I agree to the</span>
-        <a href="/privacy-policy" class="signup__link">Privacy policy.</a>
+        <button type="button" class="signup__link" [routerLink]="'/privacy-policy'">
+          Privacy policy.
+        </button>
       </app-checkbox-field>
 
       <!-- Submit Button -->

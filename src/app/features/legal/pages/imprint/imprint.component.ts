@@ -4,12 +4,33 @@
  * @module ImprintComponent
  */
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthStore } from '@stores/auth';
+import { SecondaryButtonComponent } from '@shared/components';
 
 @Component({
   selector: 'app-imprint',
-  imports: [],
+  imports: [SecondaryButtonComponent],
   templateUrl: './imprint.component.html',
   styleUrl: './imprint.component.scss',
 })
-export class ImprintComponent {}
+export class ImprintComponent {
+  private router = inject(Router);
+  private authStore = inject(AuthStore);
+
+  /**
+   * Navigate back based on authentication status
+   * @async
+   * @function goBack
+   * @returns {Promise<void>}
+   */
+  async goBack(): Promise<void> {
+    const isAuthenticated = this.authStore.isAuthenticated();
+    if (isAuthenticated) {
+      await this.router.navigate(['/dashboard']);
+    } else {
+      await this.router.navigate(['/']);
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@use '../../../../../styles/mixins' as mix;
+
+.not-found {
+  @include mix.flex-center;
+
+  &__container {
+    @include mix.flex-center;
+    flex-direction: column;
+    background-color: var(--container-bg);
+    box-shadow: var(--container-shadow);
+    border-radius: 1.9rem;
+    text-align: center;
+
+    // Mobile Portrait - 320px+
+    width: min(90%, 20rem);
+    padding: var(--space-8) var(--space-6);
+    gap: var(--space-6);
+
+    // Tablet - 768px+
+    @include mix.tablet {
+      width: min(70%, 28rem);
+      padding: var(--space-10) var(--space-8);
+      gap: var(--space-8);
+    }
+  }
+
+  &__content {
+    @include mix.flex-column-stretch;
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  &__title {
+    @include mix.heading-1;
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 6rem;
+    line-height: 1;
+
+    @include mix.tablet {
+      font-size: 8rem;
+    }
+  }
+
+  &__subtitle {
+    @include mix.heading-3;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  &__text {
+    @include mix.body;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 24rem;
+  }
+
+  &__button {
+    width: 100%;
+    max-width: 15rem;
+  }
+}

@@ -1,0 +1,23 @@
+@use '../../../../styles/mixins' as mix;
+
+.link-button {
+  @include mix.body;
+  font-family: var(--font-family-secondary);
+  color: var(--link-color);
+  background: transparent;
+  border: 1px solid transparent;
+  text-decoration: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 400;
+  @include mix.transition(color, border-color, background-color, font-weight);
+
+  &:hover {
+    color: var(--link-hover-color);
+    border-color: #adb0d9;
+    background-color: var(--link-hover-bg);
+    font-weight: 400;
+  }
+}

@@ -15,6 +15,16 @@
   cursor: pointer;
   @include mix.transition(background-color, transform, box-shadow);
 
+  // Small screens - reduce padding to prevent text wrapping
+  @media screen and (max-width: 567px) {
+    padding: 0.875rem 1rem;
+  }
+
+  // Very small screens - reduce padding even more
+  @media screen and (max-width: 350px) {
+    padding: 0.875rem 0.5rem;
+  }
+
   &:hover:not(:disabled) {
     background-color: #444df2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);

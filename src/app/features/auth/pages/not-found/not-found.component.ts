@@ -1,7 +1,7 @@
 /**
- * @fileoverview Privacy Policy Component
- * @description Displays privacy policy (Datenschutz) information
- * @module PrivacyPolicyComponent
+ * @fileoverview Not Found Component
+ * @description 404 error page with smart navigation based on auth status
+ * @module pages/not-found
  */
 
 import { Component, inject } from '@angular/core';
@@ -10,19 +10,17 @@ import { AuthStore } from '@stores/auth';
 import { SecondaryButtonComponent } from '@shared/components';
 
 @Component({
-  selector: 'app-privacy-policy',
+  selector: 'app-not-found',
   imports: [SecondaryButtonComponent],
-  templateUrl: './privacy-policy.component.html',
-  styleUrl: './privacy-policy.component.scss',
+  templateUrl: './not-found.component.html',
+  styleUrl: './not-found.component.scss',
 })
-export class PrivacyPolicyComponent {
+export class NotFoundComponent {
   private router = inject(Router);
   private authStore = inject(AuthStore);
 
   /**
-   * Navigate back based on authentication status
-   * @async
-   * @function goBack
+   * Navigate back to appropriate page based on authentication status
    * @returns {Promise<void>}
    */
   async goBack(): Promise<void> {

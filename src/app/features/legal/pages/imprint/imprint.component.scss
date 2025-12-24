@@ -1,20 +1,99 @@
 @use '../../../../../styles/mixins' as mix;
 
 .imprint {
-  @include mix.flex-column-stretch;
-  padding: var(--space-6);
-  max-width: 800px;
-  margin: 0 auto;
+  @include mix.flex-center;
+  padding: var(--space-4);
+  width: 100%;
+  min-height: 100vh;
+
+  @include mix.tablet {
+    padding: var(--space-6);
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--card-bg, #fff);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+
+    @include mix.tablet {
+      padding: var(--space-8);
+    }
+  }
+
+  &__header {
+    margin-bottom: var(--space-6);
+    text-align: center;
+
+    @include mix.tablet {
+      margin-bottom: var(--space-8);
+    }
+  }
 
   &__title {
-    @include mix.heading-2;
-    color: var(--primary-color);
-    margin-bottom: var(--space-4);
+    @include mix.heading-1;
+    margin-bottom: var(--space-2);
+    color: var(--text-primary);
+  }
+
+  &__subtitle {
+    @include mix.body;
+    color: var(--text-secondary);
   }
 
   &__content {
-    @include mix.body;
-    color: var(--text-primary);
-    line-height: 1.6;
+    margin-bottom: var(--space-6);
+
+    @include mix.tablet {
+      margin-bottom: var(--space-8);
+    }
+
+    h2 {
+      @include mix.heading-3;
+      margin-top: var(--space-6);
+      margin-bottom: var(--space-3);
+      color: var(--text-primary);
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    h3 {
+      @include mix.heading-4;
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-2);
+      color: var(--text-primary);
+    }
+
+    p {
+      @include mix.body;
+      margin-bottom: var(--space-4);
+      line-height: 1.6;
+      color: var(--text-secondary);
+
+      strong {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-color);
+
+    @include mix.tablet {
+      padding-top: var(--space-8);
+    }
+
+    app-secondary-button {
+      width: 100%;
+      max-width: 300px;
+    }
   }
 }
