@@ -4,9 +4,10 @@
  * @module features/dashboard/components/channels-sidebar
  */
 
-import { Component, signal, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ChannelStore } from '@stores/channel.store';
 import { CommonModule } from '@angular/common';
+import { WorkspaceSidebarService } from '@shared/services/workspace-sidebar.service';
 
 @Component({
   selector: 'app-channels-sidebar',
@@ -16,14 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ChannelsSidebarComponent {
   protected channelStore = inject(ChannelStore);
-  protected isCollapsed = signal(false);
-
-  /**
-   * Toggle sidebar collapse
-   */
-  toggleSidebar(): void {
-    this.isCollapsed.update((value) => !value);
-  }
+  protected sidebarService = inject(WorkspaceSidebarService);
 
   /**
    * Select a channel

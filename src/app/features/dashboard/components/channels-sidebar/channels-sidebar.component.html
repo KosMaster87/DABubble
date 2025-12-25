@@ -1,39 +1,8 @@
-<aside class="channels-sidebar" [class.channels-sidebar--collapsed]="isCollapsed()">
+<aside class="channels-sidebar" [class.channels-sidebar--hidden]="sidebarService.isHidden()">
   <div class="channels-sidebar__header">
-    @if (!isCollapsed()) {
     <h2 class="channels-sidebar__title">Channels</h2>
-    }
-
-    <button
-      class="channels-sidebar__toggle"
-      (click)="toggleSidebar()"
-      [attr.aria-label]="isCollapsed() ? 'Sidebar öffnen' : 'Sidebar schließen'"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        @if (isCollapsed()) {
-        <!-- Arrow Right -->
-        <path
-          d="M9 18L15 12L9 6"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        } @else {
-        <!-- Arrow Left -->
-        <path
-          d="M15 18L9 12L15 6"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        }
-      </svg>
-    </button>
   </div>
 
-  @if (!isCollapsed()) {
   <div class="channels-sidebar__content">
     <!-- Channels List -->
     <div class="channels-sidebar__list">
@@ -70,5 +39,4 @@
       </button>
     </div>
   </div>
-  }
 </aside>

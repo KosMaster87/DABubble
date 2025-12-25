@@ -4,7 +4,7 @@
   height: 100%;
   background-color: var(--container-bg);
   border-right: 1px solid var(--border-color);
-  transition: width 0.3s ease;
+  transition: transform 0.3s ease, margin 0.3s ease, width 0.3s ease;
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -23,13 +23,12 @@
     width: 320px;
   }
 
-  &--collapsed {
-    width: 60px;
-    min-width: 60px;
-
-    .channels-sidebar__toggle {
-      margin: 0 auto;
-    }
+  &--hidden {
+    width: 0;
+    min-width: 0;
+    margin-right: 0;
+    transform: translateX(-100%);
+    border-right: none;
   }
 
   &__header {
@@ -52,27 +51,6 @@
     font-weight: 700;
     color: var(--text-primary, #000);
     margin: 0;
-  }
-
-  &__toggle {
-    @include mix.flex(row, center, center);
-    width: 36px;
-    height: 36px;
-    border: none;
-    background: transparent;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    color: var(--text-secondary, #666);
-
-    &:hover {
-      background-color: var(--bg-hover, #e9ecef);
-    }
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
   }
 
   &__content {

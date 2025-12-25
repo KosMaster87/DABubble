@@ -1,6 +1,7 @@
 @use '../../../../../styles/mixins' as mix;
 
 .dashboard {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -37,6 +38,7 @@
     flex: 1;
     overflow: hidden;
     gap: var(--space-2);
+    transition: gap 0.3s ease;
 
     @include mix.tablet-landscape {
       gap: var(--space-3);
@@ -44,6 +46,10 @@
 
     @include mix.laptop {
       gap: var(--space-4);
+    }
+
+    &--no-sidebar {
+      gap: 0;
     }
   }
 

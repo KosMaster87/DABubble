@@ -1,0 +1,85 @@
+@use '../../../../styles/mixins' as mix;
+
+.workspace-menu-toggle {
+  position: absolute;
+  left: 0;
+  top: 70%;
+  transform: translateY(-50%);
+  @include mix.flex(column, center, center);
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-2);
+  min-height: 250px;
+  background: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-left: none;
+  border-radius: 0 12px 12px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    background-color: var(--input-bg);
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+  }
+
+  &--hidden {
+    left: 0;
+  }
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+    transition: opacity 0.2s;
+    position: absolute;
+    top: var(--space-4);
+    left: 50%;
+    transform: translateX(-50%);
+
+    &--default {
+      opacity: 1;
+
+      .workspace-menu-toggle:hover & {
+        opacity: 0;
+      }
+    }
+
+    &--hover {
+      opacity: 0;
+
+      .workspace-menu-toggle:hover & {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    transition: color 0.2s;
+    margin-top: calc(16px + var(--space-2));
+
+    .workspace-menu-toggle:hover & {
+      color: var(--text-primary);
+    }
+  }
+
+  @include mix.tablet-landscape {
+    padding: var(--space-6) var(--space-3);
+    gap: var(--space-3);
+
+    &__text {
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 1921px) {
+    border-left: 1px solid var(--border-color);
+    border-radius: 12px;
+  }
+}

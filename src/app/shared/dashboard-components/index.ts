@@ -5,3 +5,4 @@
  */
 
 export { UserOptionsMenuComponent } from './user-options-menu/user-options-menu.component';
+export { WorkspaceMenuToggleComponent } from './workspace-menu-toggle/workspace-menu-toggle.component';
