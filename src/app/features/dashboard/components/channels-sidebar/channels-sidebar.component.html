@@ -1,42 +1,192 @@
 <aside class="channels-sidebar" [class.channels-sidebar--hidden]="sidebarService.isHidden()">
   <div class="channels-sidebar__header">
-    <h2 class="channels-sidebar__title">Channels</h2>
+    <div class="channels-sidebar__branding">
+      <img
+        src="/img/logos/workspace-logo.png"
+        alt="Workspace Logo"
+        class="channels-sidebar__logo"
+      />
+      <span class="channels-sidebar__workspace-name">Devspace</span>
+    </div>
+    <button
+      class="channels-sidebar__multi-edit-btn"
+      [class.channels-sidebar__multi-edit-btn--active]="isNewMessageActive()"
+      (click)="openNewMessage()"
+      [attr.aria-label]="'Open new message'"
+    >
+      <img
+        src="/img/icon/channel-bar/multi-edit-default.svg"
+        alt=""
+        class="channels-sidebar__multi-edit-icon channels-sidebar__multi-edit-icon--default"
+      />
+      <img
+        src="/img/icon/channel-bar/multi-edit-hover.svg"
+        alt=""
+        class="channels-sidebar__multi-edit-icon channels-sidebar__multi-edit-icon--hover"
+      />
+      <img
+        src="/img/icon/channel-bar/multi-edit-active.svg"
+        alt=""
+        class="channels-sidebar__multi-edit-icon channels-sidebar__multi-edit-icon--active"
+      />
+    </button>
   </div>
 
   <div class="channels-sidebar__content">
-    <!-- Channels List -->
-    <div class="channels-sidebar__list">
-      @if (channelStore.channels().length > 0) { @for (channel of channelStore.channels(); track
-      channel.id) {
-      <button
-        class="channels-sidebar__item"
-        [class.channels-sidebar__item--active]="channelStore.selectedChannel()?.id === channel.id"
-        (click)="selectChannel(channel.id)"
-      >
-        <span class="channels-sidebar__item-icon">#</span>
-        <span class="channels-sidebar__item-name">{{ channel.name }}</span>
-      </button>
-      } } @else {
-      <div class="channels-sidebar__empty">
-        <p>Keine Channels verfügbar</p>
+    <!-- Channels Dropdown -->
+    <div class="channels-sidebar__section">
+      <div class="channels-sidebar__section-header">
+        <button
+          class="channels-sidebar__section-toggle"
+          (click)="toggleChannels()"
+          [attr.aria-label]="isChannelsOpen() ? 'Collapse channels' : 'Expand channels'"
+        >
+          <span class="channels-sidebar__dropdown-icon-wrapper">
+            <img
+              src="/img/icon/channel-bar/arrow-drop-down-default.svg"
+              alt=""
+              class="channels-sidebar__dropdown-icon channels-sidebar__dropdown-icon--default"
+              [class.channels-sidebar__dropdown-icon--open]="isChannelsOpen()"
+            />
+            <img
+              src="/img/icon/channel-bar/arrow-drop-down-hover.svg"
+              alt=""
+              class="channels-sidebar__dropdown-icon channels-sidebar__dropdown-icon--hover"
+              [class.channels-sidebar__dropdown-icon--open]="isChannelsOpen()"
+            />
+          </span>
+
+          <span class="channels-sidebar__workspace-icon-wrapper">
+            <img
+              src="/img/icon/channel-bar/workspaces-default.svg"
+              alt=""
+              class="channels-sidebar__workspace-icon"
+            />
+          </span>
+          <span class="channels-sidebar__section-title">Channels</span>
+        </button>
+
+        <button
+          class="channels-sidebar__section-add"
+          (click)="$event.stopPropagation()"
+          [attr.aria-label]="'Add channel'"
+        >
+          <img
+            src="/img/icon/channel-bar/add-channel-default.svg"
+            alt=""
+            class="channels-sidebar__add-icon channels-sidebar__add-icon--default"
+          />
+          <img
+            src="/img/icon/channel-bar/add-channel-hover.svg"
+            alt=""
+            class="channels-sidebar__add-icon channels-sidebar__add-icon--hover"
+          />
+        </button>
+      </div>
+
+      @if (isChannelsOpen()) {
+      <div class="channels-sidebar__section-content">
+        @if (dummyChannels().length > 0) { @for (channel of dummyChannels(); track channel.id) {
+        <button
+          class="channels-sidebar__item"
+          [class.channels-sidebar__item--active]="selectedChannelId() === channel.id"
+          (click)="selectDummyChannel(channel.id)"
+        >
+          <span class="channels-sidebar__item-content">
+            <span class="channels-sidebar__item-icon-wrapper">
+              <img
+                src="/img/icon/channel-bar/tag-default.svg"
+                alt=""
+                class="channels-sidebar__item-icon channels-sidebar__item-icon--default"
+              />
+              <img
+                src="/img/icon/channel-bar/tag-active.svg"
+                alt=""
+                class="channels-sidebar__item-icon channels-sidebar__item-icon--hover"
+              />
+            </span>
+            <span class="channels-sidebar__item-name">{{ channel.name }}</span>
+          </span>
+        </button>
+        } }
+
+        <button class="channels-sidebar__add-channel-btn" (click)="addChannel()">
+          <span class="channels-sidebar__add-channel-content">
+            <span class="channels-sidebar__add-channel-icon-wrapper">
+              <img
+                src="/img/icon/channel-bar/add-channel-circle-default.svg"
+                alt=""
+                class="channels-sidebar__add-channel-icon channels-sidebar__add-channel-icon--default"
+              />
+              <img
+                src="/img/icon/channel-bar/add-channel-circle-hover.svg"
+                alt=""
+                class="channels-sidebar__add-channel-icon channels-sidebar__add-channel-icon--hover"
+              />
+            </span>
+            <span class="channels-sidebar__add-channel-text">Channel hinzufügen</span>
+          </span>
+        </button>
       </div>
       }
     </div>
 
-    <!-- Add Channel Button -->
-    <div class="channels-sidebar__actions">
-      <button class="channels-sidebar__add-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M12 5V19M5 12H19"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span>Channel hinzufügen</span>
-      </button>
+    <!-- Direct Messages Dropdown -->
+    <div class="channels-sidebar__section">
+      <div class="channels-sidebar__section-header">
+        <button
+          class="channels-sidebar__section-toggle"
+          (click)="toggleDirectMessages()"
+          [attr.aria-label]="
+            isDirectMessagesOpen() ? 'Collapse direct messages' : 'Expand direct messages'
+          "
+        >
+          <span class="channels-sidebar__dropdown-icon-wrapper">
+            <img
+              src="/img/icon/channel-bar/arrow-drop-down-default.svg"
+              alt=""
+              class="channels-sidebar__dropdown-icon channels-sidebar__dropdown-icon--default"
+              [class.channels-sidebar__dropdown-icon--open]="isDirectMessagesOpen()"
+            />
+            <img
+              src="/img/icon/channel-bar/arrow-drop-down-hover.svg"
+              alt=""
+              class="channels-sidebar__dropdown-icon channels-sidebar__dropdown-icon--hover"
+              [class.channels-sidebar__dropdown-icon--open]="isDirectMessagesOpen()"
+            />
+          </span>
+
+          <span class="channels-sidebar__workspace-icon-wrapper">
+            <img
+              src="/img/icon/channel-bar/account-circle-default.svg"
+              alt=""
+              class="channels-sidebar__workspace-icon"
+            />
+          </span>
+          <span class="channels-sidebar__section-title">Direct messages</span>
+        </button>
+      </div>
+
+      @if (isDirectMessagesOpen()) {
+      <div class="channels-sidebar__section-content">
+        @if (directMessages().length > 0) { @for (dm of directMessages(); track dm.id) {
+        <button
+          class="channels-sidebar__item channels-sidebar__item--dm"
+          [class.channels-sidebar__item--active]="selectedDirectMessageId() === dm.id"
+          (click)="selectDirectMessage(dm.id)"
+        >
+          <span class="channels-sidebar__item-content">
+            <img [src]="dm.avatar" [alt]="dm.name" class="channels-sidebar__item-avatar" />
+            <span class="channels-sidebar__item-name">{{ dm.name }}</span>
+          </span>
+        </button>
+        } } @else {
+        <div class="channels-sidebar__empty">
+          <p>Keine Direktnachrichten verfügbar</p>
+        </div>
+        }
+      </div>
+      }
     </div>
   </div>
 </aside>

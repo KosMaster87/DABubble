@@ -10,8 +10,7 @@
   &__header {
     @include mix.flex(row, space-between, flex-start);
     padding: var(--space-4) var(--space-6);
-    border-bottom: 1px solid var(--border-color);
-    background-color: var(--container-bg);
+    box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
 
     @include mix.tablet-landscape {
@@ -53,30 +52,6 @@
     margin: 0;
   }
 
-  &__action-btn {
-    @include mix.flex(row, center, center);
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border-color, #e0e0e0);
-    background: transparent;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: var(--text-secondary, #666);
-    font-size: 0.9rem;
-
-    &:hover {
-      background-color: var(--bg-hover, #f5f5f5);
-      border-color: var(--primary-color, #444df2);
-      color: var(--primary-color, #444df2);
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
   &__content {
     flex: 1;
     overflow-y: auto;
@@ -92,9 +67,9 @@
     }
   }
 
-  &__messages {
-    max-width: 800px;
-  }
+  // &__messages {
+  //   max-width: 800px;
+  // }
 
   &__welcome-card {
     background: linear-gradient(135deg, rgba(68, 77, 242, 0.05) 0%, rgba(121, 126, 243, 0.05) 100%);
@@ -157,88 +132,7 @@
     font-size: 0.9rem;
   }
 
-  &__input {
-    padding: var(--space-4) var(--space-8) var(--space-6);
-    border-top: 1px solid var(--border-color);
-    background-color: var(--container-bg);
-    flex-shrink: 0;
-
-    &-container {
-      @include mix.flex(row, space-between, center);
-      gap: 0.75rem;
-      max-width: 800px;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 24px;
-      background-color: var(--bg-secondary, #f8f9fa);
-      transition: all 0.2s;
-
-      &:focus-within {
-        border-color: var(--primary-color, #444df2);
-        box-shadow: 0 0 0 3px rgba(68, 77, 242, 0.1);
-      }
-    }
-
-    &-action {
-      @include mix.flex(row, center, center);
-      width: 36px;
-      height: 36px;
-      border: none;
-      background: transparent;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background-color 0.2s;
-      color: var(--text-secondary, #666);
-      flex-shrink: 0;
-
-      &:hover {
-        background-color: var(--bg-hover, #e9ecef);
-      }
-
-      svg {
-        width: 24px;
-        height: 24px;
-      }
-    }
-
-    &-field {
-      flex: 1;
-      border: none;
-      background: transparent;
-      font-size: 1rem;
-      outline: none;
-      color: var(--text-primary, #000);
-
-      &::placeholder {
-        color: var(--text-secondary, #999);
-      }
-    }
-  }
-
-  &__send-btn {
-    @include mix.flex(row, center, center);
-    width: 36px;
-    height: 36px;
-    border: none;
-    background: var(--primary-color, #444df2);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: #fff;
-    flex-shrink: 0;
-
-    &:hover {
-      background: #3339d8;
-      transform: scale(1.05);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
+  &__footer {
+    padding: var(--space-4);
   }
 }

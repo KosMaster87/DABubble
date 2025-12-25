@@ -1,0 +1,135 @@
+@use '../../../../styles/mixins' as mix;
+
+.message-box {
+  @include mix.flex(column, flex-start, stretch);
+  background: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: var(--space-3) var(--space-4);
+  gap: var(--space-2);
+
+  &__input-wrapper {
+    width: 100%;
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 44px;
+    max-height: 200px;
+    padding: var(--space-3);
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-primary);
+    resize: vertical;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    &::placeholder {
+      color: var(--text-secondary);
+    }
+  }
+
+  &__actions {
+    @include mix.flex(row, space-between, center);
+    gap: var(--space-2);
+  }
+
+  &__actions-left {
+    @include mix.flex(row, flex-start, center);
+    gap: var(--space-2);
+  }
+
+  &__action-btn {
+    @include mix.flex(row, center, center);
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+
+    &:hover {
+      background-color: #eceefe;
+    }
+  }
+
+  &__action-icon {
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &--default {
+      opacity: 1;
+
+      .message-box__action-btn:hover & {
+        opacity: 0;
+      }
+    }
+
+    &--hover {
+      opacity: 0;
+
+      .message-box__action-btn:hover & {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__send-btn {
+    @include mix.flex(row, center, center);
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+
+      .message-box__send-icon {
+        animation: none;
+      }
+    }
+
+    &:not(:disabled) .message-box__send-icon {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+  }
+
+  &__send-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}

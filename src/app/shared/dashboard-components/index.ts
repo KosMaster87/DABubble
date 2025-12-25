@@ -6,3 +6,4 @@
 
 export { UserOptionsMenuComponent } from './user-options-menu/user-options-menu.component';
 export { WorkspaceMenuToggleComponent } from './workspace-menu-toggle/workspace-menu-toggle.component';
+export { MessageBoxComponent } from './message-box/message-box.component';

@@ -1,0 +1,14 @@
+<div class="members-miniatures">
+  <div class="members-miniatures__avatars">
+    @for (member of members().slice(0, 3); track member.id; let i = $index) {
+    <img
+      [src]="member.avatar"
+      [alt]="member.name"
+      [title]="member.name"
+      class="members-miniatures__avatar"
+      [style.z-index]="3 - i"
+    />
+    }
+  </div>
+  <span class="members-miniatures__count">{{ totalCount() }}</span>
+</div>

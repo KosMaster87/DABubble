@@ -8,39 +8,8 @@
     </div>
 
     <div class="welcome-channel__header-actions">
-      <button class="welcome-channel__action-btn" title="Mitglieder">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span>Mitglieder</span>
-      </button>
+      <app-members-miniatures [members]="members()" [totalCount]="totalMemberCount()" />
+      <app-add-member-button (addMemberClicked)="onAddMember()" />
     </div>
   </div>
 
@@ -111,77 +80,7 @@
   </div>
 
   <!-- Message Input -->
-  <div class="welcome-channel__input">
-    <div class="welcome-channel__input-container">
-      <button class="welcome-channel__input-action" title="Datei anhängen">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59723 21.9983 8.005 21.9983C6.41277 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00166 17.5872 2.00166 15.995C2.00166 14.4028 2.63417 12.8758 3.76 11.75L12.33 3.18C13.0806 2.42944 14.0992 2.00552 15.1625 2.00552C16.2258 2.00552 17.2444 2.42944 17.995 3.18C18.7456 3.93056 19.1695 4.94918 19.1695 6.0125C19.1695 7.07582 18.7456 8.09444 17.995 8.845L9.41 17.41C9.03472 17.7853 8.52541 17.9972 7.995 17.9972C7.46459 17.9972 6.95528 17.7853 6.58 17.41C6.20472 17.0347 5.99279 16.5254 5.99279 15.995C5.99279 15.4646 6.20472 14.9553 6.58 14.58L14.07 7.1"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </button>
-
-      <input
-        type="text"
-        class="welcome-channel__input-field"
-        placeholder="Nachricht an #dabubble-welcome"
-      />
-
-      <button class="welcome-channel__input-action" title="Emoji hinzufügen">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M9 9H9.01"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M15 9H15.01"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </button>
-
-      <button class="welcome-channel__send-btn" title="Nachricht senden">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M22 2L11 13"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M22 2L15 22L11 13L2 9L22 2Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </button>
-    </div>
+  <div class="welcome-channel__footer">
+    <app-message-box (messageSent)="onMessageSent($event)" />
   </div>
 </div>

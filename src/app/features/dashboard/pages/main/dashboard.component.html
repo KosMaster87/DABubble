@@ -4,7 +4,16 @@
   <app-dashboard-header class="dashboard__header" />
 
   <div class="dashboard__main" [class.dashboard__main--no-sidebar]="sidebarService.isHidden()">
-    <app-channels-sidebar class="dashboard__sidebar" />
+    <app-channels-sidebar
+      class="dashboard__sidebar"
+      [isNewMessageActive]="currentView() === 'new-message'"
+      (newMessageRequested)="showNewMessage()"
+    />
+
+    @if (currentView() === 'welcome') {
     <app-welcome-channel class="dashboard__content" />
+    } @else if (currentView() === 'new-message') {
+    <app-new-message class="dashboard__content" />
+    }
   </div>
 </div>

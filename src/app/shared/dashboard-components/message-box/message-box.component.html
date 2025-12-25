@@ -1,0 +1,58 @@
+<div class="message-box">
+  <div class="message-box__input-wrapper">
+    <textarea
+      class="message-box__input"
+      [(ngModel)]="message"
+      placeholder="Type a message..."
+      rows="1"
+      (keydown.enter)="$event.preventDefault(); sendMessage()"
+    ></textarea>
+  </div>
+
+  <div class="message-box__actions">
+    <div class="message-box__actions-left">
+      <button
+        class="message-box__action-btn"
+        (click)="openEmojiPicker()"
+        [attr.aria-label]="'Add emoji'"
+      >
+        <img
+          src="/img/icon/chat/add-reaction-default.svg"
+          alt=""
+          class="message-box__action-icon message-box__action-icon--default"
+        />
+        <img
+          src="/img/icon/chat/add-reaction-hover.svg"
+          alt=""
+          class="message-box__action-icon message-box__action-icon--hover"
+        />
+      </button>
+
+      <button
+        class="message-box__action-btn"
+        (click)="openMentionPicker()"
+        [attr.aria-label]="'Mention user'"
+      >
+        <img
+          src="/img/icon/chat/alternate-email-default.svg"
+          alt=""
+          class="message-box__action-icon message-box__action-icon--default"
+        />
+        <img
+          src="/img/icon/chat/alternate-email-hover.svg"
+          alt=""
+          class="message-box__action-icon message-box__action-icon--hover"
+        />
+      </button>
+    </div>
+
+    <button
+      class="message-box__send-btn"
+      (click)="sendMessage()"
+      [disabled]="!message.trim()"
+      [attr.aria-label]="'Send message'"
+    >
+      <img src="/img/icon/chat/send-default.svg" alt="" class="message-box__send-icon" />
+    </button>
+  </div>
+</div>

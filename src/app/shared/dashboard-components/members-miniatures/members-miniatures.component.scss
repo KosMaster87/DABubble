@@ -1,0 +1,40 @@
+@use '../../../../styles/mixins' as mix;
+
+.members-miniatures {
+  @include mix.flex(row, flex-start, center);
+  gap: var(--space-2);
+
+  &__avatars {
+    display: flex;
+    position: relative;
+    height: 40px;
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--container-bg, #fff);
+    object-fit: cover;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:not(:first-child) {
+      margin-left: -12px;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      z-index: 10 !important;
+    }
+  }
+
+  &__count {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary, #000);
+    min-width: 20px;
+    text-align: left;
+  }
+}

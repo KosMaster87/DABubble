@@ -1,0 +1,46 @@
+@use '../../../../styles/mixins' as mix;
+
+.add-member-btn {
+  @include mix.flex(row, center, center);
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+
+  &:hover,
+  &:active {
+    background-color: #eceefe;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.2s;
+
+    &--default {
+      opacity: 1;
+
+      .add-member-btn:hover &,
+      .add-member-btn:active & {
+        opacity: 0;
+      }
+    }
+
+    &--hover {
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .add-member-btn:hover &,
+      .add-member-btn:active & {
+        opacity: 1;
+      }
+    }
+  }
+}
