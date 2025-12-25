@@ -4,38 +4,15 @@
  * @module features/dashboard/pages/main
  */
 
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthStore } from '@stores/auth';
-import { SecondaryButtonComponent } from '@shared/components';
+import { Component } from '@angular/core';
+import { DashboardHeaderComponent } from '../../components/dashboard-header/dashboard-header.component';
+import { ChannelsSidebarComponent } from '../../components/channels-sidebar/channels-sidebar.component';
+import { WelcomeChannelComponent } from '../../components/welcome-channel/welcome-channel.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [SecondaryButtonComponent],
+  imports: [DashboardHeaderComponent, ChannelsSidebarComponent, WelcomeChannelComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent {
-  private router = inject(Router);
-  protected authStore = inject(AuthStore);
-
-  /**
-   * Get current user
-   * @function currentUser
-   * @returns {User | null} Current user
-   */
-  get currentUser() {
-    return this.authStore.user();
-  }
-
-  /**
-   * Logout user
-   * @async
-   * @function logout
-   * @returns {Promise<void>}
-   */
-  async logout(): Promise<void> {
-    await this.authStore.logout();
-    await this.router.navigate(['/']);
-  }
-}
+export class DashboardComponent {}

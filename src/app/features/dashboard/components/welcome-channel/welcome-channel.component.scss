@@ -1,0 +1,244 @@
+@use '../../../../../styles/mixins' as mix;
+
+.welcome-channel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--container-bg);
+  overflow: hidden;
+
+  &__header {
+    @include mix.flex(row, space-between, flex-start);
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--container-bg);
+    flex-shrink: 0;
+
+    @include mix.tablet-landscape {
+      padding: var(--space-5) var(--space-6);
+    }
+
+    @include mix.laptop {
+      padding: var(--space-6) var(--space-8);
+    }
+
+    &-info {
+      flex: 1;
+    }
+
+    &-actions {
+      @include mix.flex(row, flex-end, center);
+      gap: 0.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary, #000);
+    margin: 0 0 0.5rem 0;
+
+    @include mix.tablet-landscape {
+      font-size: 1.35rem;
+    }
+
+    @include mix.laptop {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__description {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #666);
+    margin: 0;
+  }
+
+  &__action-btn {
+    @include mix.flex(row, center, center);
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color, #e0e0e0);
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-secondary, #666);
+    font-size: 0.9rem;
+
+    &:hover {
+      background-color: var(--bg-hover, #f5f5f5);
+      border-color: var(--primary-color, #444df2);
+      color: var(--primary-color, #444df2);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-4);
+    @include mix.custom-scrollbar(8px, transparent, var(--border-color));
+
+    @include mix.tablet-landscape {
+      padding: var(--space-6);
+    }
+
+    @include mix.laptop {
+      padding: var(--space-8);
+    }
+  }
+
+  &__messages {
+    max-width: 800px;
+  }
+
+  &__welcome-card {
+    background: linear-gradient(135deg, rgba(68, 77, 242, 0.05) 0%, rgba(121, 126, 243, 0.05) 100%);
+    border: 1px solid rgba(68, 77, 242, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__welcome-icon {
+    @include mix.flex(row, center, center);
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--primary-color, #444df2) 0%, #797ef3 100%);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    color: #fff;
+
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  &__welcome-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary, #000);
+    margin: 0 0 1rem 0;
+  }
+
+  &__welcome-text {
+    font-size: 1rem;
+    color: var(--text-secondary, #666);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+  }
+
+  &__welcome-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__feature {
+    @include mix.flex(row, flex-start, center);
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-primary, #000);
+
+    &-icon {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__message-placeholder {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary, #999);
+    font-size: 0.9rem;
+  }
+
+  &__input {
+    padding: var(--space-4) var(--space-8) var(--space-6);
+    border-top: 1px solid var(--border-color);
+    background-color: var(--container-bg);
+    flex-shrink: 0;
+
+    &-container {
+      @include mix.flex(row, space-between, center);
+      gap: 0.75rem;
+      max-width: 800px;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color, #e0e0e0);
+      border-radius: 24px;
+      background-color: var(--bg-secondary, #f8f9fa);
+      transition: all 0.2s;
+
+      &:focus-within {
+        border-color: var(--primary-color, #444df2);
+        box-shadow: 0 0 0 3px rgba(68, 77, 242, 0.1);
+      }
+    }
+
+    &-action {
+      @include mix.flex(row, center, center);
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      color: var(--text-secondary, #666);
+      flex-shrink: 0;
+
+      &:hover {
+        background-color: var(--bg-hover, #e9ecef);
+      }
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &-field {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      outline: none;
+      color: var(--text-primary, #000);
+
+      &::placeholder {
+        color: var(--text-secondary, #999);
+      }
+    }
+  }
+
+  &__send-btn {
+    @include mix.flex(row, center, center);
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: var(--primary-color, #444df2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #fff;
+    flex-shrink: 0;
+
+    &:hover {
+      background: #3339d8;
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

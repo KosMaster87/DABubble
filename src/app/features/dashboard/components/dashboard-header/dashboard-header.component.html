@@ -1,0 +1,79 @@
+<header class="dashboard-header">
+  <div class="dashboard-header__content">
+    <!-- Logo -->
+    <div class="dashboard-header__logo">
+      <app-dabubble-logo />
+    </div>
+
+    <!-- Search Bar -->
+    <div class="dashboard-header__search">
+      <input
+        type="text"
+        class="dashboard-header__search-input"
+        placeholder="Durchsuche DABubble..."
+        (input)="onSearch($event)"
+      />
+      <svg
+        class="dashboard-header__search-icon"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="dashboard-header__profile">
+      <span class="dashboard-header__profile-name">
+        {{ currentUser?.displayName || 'User' }}
+      </span>
+
+      <div class="dashboard-header__profile-avatar">
+        @if (currentUser?.photoURL) {
+        <img
+          [src]="currentUser?.photoURL"
+          [alt]="currentUser?.displayName || 'User'"
+          class="dashboard-header__avatar-img"
+        />
+        } @else {
+        <div class="dashboard-header__avatar-placeholder">
+          {{ (currentUser?.displayName || 'U').charAt(0).toUpperCase() }}
+        </div>
+        }
+      </div>
+
+      <div class="dashboard-header__options-wrapper">
+        <button
+          class="dashboard-header__options-btn"
+          (click)="toggleOptions()"
+          [class.dashboard-header__options-btn--active]="isOptionsOpen()"
+        >
+          <img
+            src="/img/icon/arrow_default.svg"
+            alt="Options"
+            class="dashboard-header__options-icon dashboard-header__options-icon--default"
+          />
+          <img
+            src="/img/icon/arrow_hover.svg"
+            alt="Options"
+            class="dashboard-header__options-icon dashboard-header__options-icon--hover"
+          />
+        </button>
+
+        <app-user-options-menu
+          [isVisible]="isOptionsOpen()"
+          (profileClicked)="onProfileClick()"
+          (logoutClicked)="logout()"
+        />
+      </div>
+    </div>
+  </div>
+</header>

@@ -24,8 +24,13 @@
   }
 }
 
-/* Custom Scrollbar (legacy) */
-@mixin custom-scrollbar($width: 8px, $track-color: #f1f1f1, $thumb-color: #888) {
+/* Custom Scrollbar */
+@mixin custom-scrollbar(
+  $width: 8px,
+  $track-color: transparent,
+  $thumb-color: var(--border-color),
+  $thumb-hover-color: var(--text-secondary)
+) {
   &::-webkit-scrollbar {
     width: $width;
   }
@@ -34,10 +39,10 @@
   }
   &::-webkit-scrollbar-thumb {
     background: $thumb-color;
-    border-radius: var(--radius-full);
+    border-radius: 3px;
 
     &:hover {
-      background: darken($thumb-color, 10%);
+      background: $thumb-hover-color;
     }
   }
 }
