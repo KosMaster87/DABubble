@@ -22,6 +22,7 @@ export class ChannelsSidebarComponent {
   newMessageRequested = output<void>();
   protected isChannelsOpen = signal(true);
   protected isDirectMessagesOpen = signal(true);
+  protected isAddChannelActive = signal(false);
 
   /**
    * Dummy channels data
@@ -107,6 +108,7 @@ export class ChannelsSidebarComponent {
    * Add new channel
    */
   addChannel(): void {
+    this.isAddChannelActive.update((v) => !v);
     console.log('Add channel clicked');
     // TODO: Implement add channel logic
   }

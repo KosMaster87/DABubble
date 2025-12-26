@@ -30,26 +30,15 @@
   &__icon {
     width: 16px;
     height: 16px;
-    transition: opacity 0.2s;
+    transition: filter 0.2s;
     position: absolute;
     top: var(--space-4);
     left: 50%;
     transform: translateX(-50%);
 
-    &--default {
-      opacity: 1;
-
-      .workspace-menu-toggle:hover & {
-        opacity: 0;
-      }
-    }
-
-    &--hover {
-      opacity: 0;
-
-      .workspace-menu-toggle:hover & {
-        opacity: 1;
-      }
+    .workspace-menu-toggle:hover & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
   }
 

@@ -17,17 +17,7 @@
       <img
         src="/img/icon/channel-bar/multi-edit-default.svg"
         alt=""
-        class="channels-sidebar__multi-edit-icon channels-sidebar__multi-edit-icon--default"
-      />
-      <img
-        src="/img/icon/channel-bar/multi-edit-hover.svg"
-        alt=""
-        class="channels-sidebar__multi-edit-icon channels-sidebar__multi-edit-icon--hover"
-      />
-      <img
-        src="/img/icon/channel-bar/multi-edit-active.svg"
-        alt=""
-        class="channels-sidebar__multi-edit-icon channels-sidebar__multi-edit-icon--active"
+        class="channels-sidebar__multi-edit-icon"
       />
     </button>
   </div>
@@ -45,13 +35,7 @@
             <img
               src="/img/icon/channel-bar/arrow-drop-down-default.svg"
               alt=""
-              class="channels-sidebar__dropdown-icon channels-sidebar__dropdown-icon--default"
-              [class.channels-sidebar__dropdown-icon--open]="isChannelsOpen()"
-            />
-            <img
-              src="/img/icon/channel-bar/arrow-drop-down-hover.svg"
-              alt=""
-              class="channels-sidebar__dropdown-icon channels-sidebar__dropdown-icon--hover"
+              class="channels-sidebar__dropdown-icon"
               [class.channels-sidebar__dropdown-icon--open]="isChannelsOpen()"
             />
           </span>
@@ -68,18 +52,14 @@
 
         <button
           class="channels-sidebar__section-add"
-          (click)="$event.stopPropagation()"
+          [class.channels-sidebar__section-add--active]="isAddChannelActive()"
+          (click)="$event.stopPropagation(); addChannel()"
           [attr.aria-label]="'Add channel'"
         >
           <img
             src="/img/icon/channel-bar/add-channel-default.svg"
             alt=""
-            class="channels-sidebar__add-icon channels-sidebar__add-icon--default"
-          />
-          <img
-            src="/img/icon/channel-bar/add-channel-hover.svg"
-            alt=""
-            class="channels-sidebar__add-icon channels-sidebar__add-icon--hover"
+            class="channels-sidebar__add-icon"
           />
         </button>
       </div>
@@ -97,12 +77,7 @@
               <img
                 src="/img/icon/channel-bar/tag-default.svg"
                 alt=""
-                class="channels-sidebar__item-icon channels-sidebar__item-icon--default"
-              />
-              <img
-                src="/img/icon/channel-bar/tag-active.svg"
-                alt=""
-                class="channels-sidebar__item-icon channels-sidebar__item-icon--hover"
+                class="channels-sidebar__item-icon"
               />
             </span>
             <span class="channels-sidebar__item-name">{{ channel.name }}</span>
@@ -116,12 +91,7 @@
               <img
                 src="/img/icon/channel-bar/add-channel-circle-default.svg"
                 alt=""
-                class="channels-sidebar__add-channel-icon channels-sidebar__add-channel-icon--default"
-              />
-              <img
-                src="/img/icon/channel-bar/add-channel-circle-hover.svg"
-                alt=""
-                class="channels-sidebar__add-channel-icon channels-sidebar__add-channel-icon--hover"
+                class="channels-sidebar__add-channel-icon"
               />
             </span>
             <span class="channels-sidebar__add-channel-text">Channel hinzufügen</span>
@@ -145,13 +115,7 @@
             <img
               src="/img/icon/channel-bar/arrow-drop-down-default.svg"
               alt=""
-              class="channels-sidebar__dropdown-icon channels-sidebar__dropdown-icon--default"
-              [class.channels-sidebar__dropdown-icon--open]="isDirectMessagesOpen()"
-            />
-            <img
-              src="/img/icon/channel-bar/arrow-drop-down-hover.svg"
-              alt=""
-              class="channels-sidebar__dropdown-icon channels-sidebar__dropdown-icon--hover"
+              class="channels-sidebar__dropdown-icon"
               [class.channels-sidebar__dropdown-icon--open]="isDirectMessagesOpen()"
             />
           </span>

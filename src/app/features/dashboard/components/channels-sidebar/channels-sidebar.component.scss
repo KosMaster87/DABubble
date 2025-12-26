@@ -103,38 +103,20 @@
   &__multi-edit-icon {
     width: 20px;
     height: 20px;
-    transition: opacity 0.2s;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    opacity: 0.6;
+    transition: opacity 0.2s, filter 0.2s;
 
-    &--default {
+    // Hover state (including when active)
+    .channels-sidebar__multi-edit-btn:hover & {
       opacity: 1;
-
-      .channels-sidebar__multi-edit-btn:hover:not(.channels-sidebar__multi-edit-btn--active) & {
-        opacity: 0;
-      }
-
-      .channels-sidebar__multi-edit-btn--active & {
-        opacity: 0;
-      }
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
 
-    &--hover {
-      opacity: 0;
-
-      .channels-sidebar__multi-edit-btn:hover:not(.channels-sidebar__multi-edit-btn--active) & {
-        opacity: 1;
-      }
-    }
-
-    &--active {
-      opacity: 0;
-
-      .channels-sidebar__multi-edit-btn--active & {
-        opacity: 1;
-      }
+    // Active state (when not hovering)
+    .channels-sidebar__multi-edit-btn--active:not(:hover) & {
+      opacity: 1;
+      filter: none;
     }
 
     @include mix.laptop {
@@ -210,28 +192,15 @@
     width: 12px;
     height: 12px;
     transform: rotate(-90deg);
+    transition: filter 0.2s;
 
     &--open {
       transform: rotate(0deg);
     }
 
-    &--default {
-      opacity: 1;
-
-      .channels-sidebar__section-toggle:hover & {
-        opacity: 0;
-      }
-    }
-
-    &--hover {
-      opacity: 0;
-      position: absolute;
-      left: 0;
-      top: 0;
-
-      .channels-sidebar__section-toggle:hover & {
-        opacity: 1;
-      }
+    .channels-sidebar__section-toggle:hover & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
   }
 
@@ -260,31 +229,32 @@
     &:hover {
       background-color: #eceefe;
     }
+
+    &--active {
+      background-color: #eceefe;
+    }
   }
 
   &__add-icon {
     width: 12px;
     height: 12px;
-    transition: opacity 0.2s;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transition: filter 0.2s;
 
-    &--default {
-      opacity: 1;
-
-      .channels-sidebar__section-add:hover & {
-        opacity: 0;
-      }
+    // Hover state (not when active)
+    .channels-sidebar__section-add:hover:not(.channels-sidebar__section-add--active) & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
 
-    &--hover {
-      opacity: 0;
+    // Active state (keep black)
+    .channels-sidebar__section-add--active & {
+      filter: none;
+    }
 
-      .channels-sidebar__section-add:hover & {
-        opacity: 1;
-      }
+    // Active + Hover (also colored)
+    .channels-sidebar__section-add--active:hover & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
   }
 
@@ -318,7 +288,7 @@
   &__item-content {
     @include mix.flex(row, flex-start, center);
     gap: 0.75rem;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 1.5rem 0.5rem 0.75rem;
     border-radius: 2rem;
     transition: background-color 0.2s;
 
@@ -345,33 +315,12 @@
     width: 16px;
     height: 16px;
     flex-shrink: 0;
-    transition: opacity 0.2s;
+    transition: filter 0.2s;
 
-    &--default {
-      opacity: 1;
-
-      .channels-sidebar__item:hover & {
-        opacity: 0;
-      }
-
-      .channels-sidebar__item--active & {
-        opacity: 0;
-      }
-    }
-
-    &--hover {
-      opacity: 0;
-      position: absolute;
-      left: 0;
-      top: 0;
-
-      .channels-sidebar__item:hover & {
-        opacity: 1;
-      }
-
-      .channels-sidebar__item--active & {
-        opacity: 1;
-      }
+    .channels-sidebar__item:hover &,
+    .channels-sidebar__item--active & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
   }
 
@@ -435,25 +384,11 @@
     width: 16px;
     height: 16px;
     flex-shrink: 0;
-    transition: opacity 0.2s;
+    transition: filter 0.2s;
 
-    &--default {
-      opacity: 1;
-
-      .channels-sidebar__add-channel-btn:hover & {
-        opacity: 0;
-      }
-    }
-
-    &--hover {
-      opacity: 0;
-      position: absolute;
-      left: 0;
-      top: 0;
-
-      .channels-sidebar__add-channel-btn:hover & {
-        opacity: 1;
-      }
+    .channels-sidebar__add-channel-btn:hover & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
   }
 

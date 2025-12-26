@@ -11,16 +11,7 @@
         : '/img/icon/channel-bar/show-navigation-default.svg'
     "
     alt=""
-    class="workspace-menu-toggle__icon workspace-menu-toggle__icon--default"
-  />
-  <img
-    [src]="
-      sidebarService.isVisible()
-        ? '/img/icon/channel-bar/hide-navigation-hover.svg'
-        : '/img/icon/channel-bar/show-navigation-hover.svg'
-    "
-    alt=""
-    class="workspace-menu-toggle__icon workspace-menu-toggle__icon--hover"
+    class="workspace-menu-toggle__icon"
   />
   <span class="workspace-menu-toggle__text">
     {{ sidebarService.isVisible() ? 'Close workspace menu' : 'Open workspace menu' }}

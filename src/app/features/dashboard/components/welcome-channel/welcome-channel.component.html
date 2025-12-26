@@ -2,13 +2,17 @@
   <div class="welcome-channel__header">
     <div class="welcome-channel__header-info">
       <h1 class="welcome-channel__title"># dabubble-welcome</h1>
-      <p class="welcome-channel__description">
+      <!-- <p class="welcome-channel__description">
         Willkommen beim DABubble Welcome Channel! Hier findest du alle wichtigen Informationen.
-      </p>
+      </p> -->
     </div>
 
     <div class="welcome-channel__header-actions">
-      <app-members-miniatures [members]="members()" [totalCount]="totalMemberCount()" />
+      <app-members-miniatures
+        [members]="members()"
+        [totalCount]="totalMemberCount()"
+        (memberClicked)="onViewMembers()"
+      />
       <app-add-member-button (addMemberClicked)="onAddMember()" />
     </div>
   </div>
@@ -83,4 +87,13 @@
   <div class="welcome-channel__footer">
     <app-message-box (messageSent)="onMessageSent($event)" />
   </div>
+
+  <!-- Members Options Menu -->
+  <app-members-options-menu
+    [isOpen]="isMembersMenuOpen()"
+    [members]="members()"
+    (closeClicked)="onCloseMembersMenu()"
+    (addMemberClicked)="onAddMember()"
+    (memberSelected)="onMemberSelected($event)"
+  />
 </div>

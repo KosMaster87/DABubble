@@ -1,0 +1,6 @@
+<button class="user-list-item" [class.user-list-item--active]="isActive()" (click)="onClick()">
+  <span class="user-list-item__content">
+    <img [src]="user().avatar" [alt]="user().name" class="user-list-item__avatar" />
+    <span class="user-list-item__name">{{ user().name }}</span>
+  </span>
+</button>

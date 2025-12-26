@@ -13,35 +13,27 @@
     <div class="message-box__actions-left">
       <button
         class="message-box__action-btn"
+        [class.message-box__action-btn--active]="isEmojiPickerOpen()"
         (click)="openEmojiPicker()"
         [attr.aria-label]="'Add emoji'"
       >
         <img
           src="/img/icon/chat/add-reaction-default.svg"
           alt=""
-          class="message-box__action-icon message-box__action-icon--default"
-        />
-        <img
-          src="/img/icon/chat/add-reaction-hover.svg"
-          alt=""
-          class="message-box__action-icon message-box__action-icon--hover"
+          class="message-box__action-icon"
         />
       </button>
 
       <button
         class="message-box__action-btn"
+        [class.message-box__action-btn--active]="isMentionPickerOpen()"
         (click)="openMentionPicker()"
         [attr.aria-label]="'Mention user'"
       >
         <img
           src="/img/icon/chat/alternate-email-default.svg"
           alt=""
-          class="message-box__action-icon message-box__action-icon--default"
-        />
-        <img
-          src="/img/icon/chat/alternate-email-hover.svg"
-          alt=""
-          class="message-box__action-icon message-box__action-icon--hover"
+          class="message-box__action-icon"
         />
       </button>
     </div>

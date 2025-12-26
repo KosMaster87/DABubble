@@ -124,40 +124,23 @@
   &__options-icon {
     width: 14.4px;
     height: 14.4px;
-    transition: transform 0.2s;
-    position: absolute;
+    transition: transform 0.2s, filter 0.2s;
 
-    &--default {
-      opacity: 1;
-
-      .dashboard-header__options-btn:hover & {
-        opacity: 0;
-      }
-
-      .dashboard-header__options-btn--active & {
-        transform: rotate(180deg);
-      }
-
-      .dashboard-header__options-btn--active:hover & {
-        opacity: 0;
-      }
+    // Hover state
+    .dashboard-header__options-btn:hover & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
 
-    &--hover {
-      opacity: 0;
+    // Active state (rotated 180deg)
+    .dashboard-header__options-btn--active & {
+      transform: rotate(180deg);
+    }
 
-      .dashboard-header__options-btn:hover & {
-        opacity: 1;
-      }
-
-      .dashboard-header__options-btn--active & {
-        opacity: 0;
-        transform: rotate(180deg);
-      }
-
-      .dashboard-header__options-btn--active:hover & {
-        opacity: 1;
-      }
+    // Active + Hover
+    .dashboard-header__options-btn--active:hover & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
   }
 }

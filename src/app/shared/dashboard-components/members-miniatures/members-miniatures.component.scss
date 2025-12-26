@@ -3,6 +3,17 @@
 .members-miniatures {
   @include mix.flex(row, flex-start, center);
   gap: var(--space-2);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: var(--space-1);
+  border-radius: 2rem;
+  transition: background-color 0.2s;
+
+  &:hover,
+  &:active {
+    background-color: #eceefe;
+  }
 
   &__avatars {
     display: flex;
@@ -17,16 +28,10 @@
     border: 2px solid var(--container-bg, #fff);
     object-fit: cover;
     position: relative;
-    cursor: pointer;
-    transition: transform 0.2s;
+    pointer-events: none;
 
     &:not(:first-child) {
       margin-left: -12px;
-    }
-
-    &:hover {
-      transform: translateY(-2px);
-      z-index: 10 !important;
     }
   }
 

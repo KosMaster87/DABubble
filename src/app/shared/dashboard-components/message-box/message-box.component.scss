@@ -59,31 +59,32 @@
     &:hover {
       background-color: #eceefe;
     }
+
+    &--active {
+      background-color: #eceefe;
+    }
   }
 
   &__action-icon {
     width: 20px;
     height: 20px;
-    transition: opacity 0.2s;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transition: filter 0.2s;
 
-    &--default {
-      opacity: 1;
-
-      .message-box__action-btn:hover & {
-        opacity: 0;
-      }
+    // Hover state (not when active)
+    .message-box__action-btn:hover:not(.message-box__action-btn--active) & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
 
-    &--hover {
-      opacity: 0;
+    // Active state (keep black)
+    .message-box__action-btn--active & {
+      filter: none;
+    }
 
-      .message-box__action-btn:hover & {
-        opacity: 1;
-      }
+    // Active + Hover (also colored)
+    .message-box__action-btn--active:hover & {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2315%) hue-rotate(228deg)
+        brightness(98%) contrast(92%);
     }
   }
 

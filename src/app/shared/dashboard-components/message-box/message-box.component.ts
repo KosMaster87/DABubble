@@ -4,7 +4,7 @@
  * @module shared/dashboard-components/message-box
  */
 
-import { Component, output } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 export class MessageBoxComponent {
   messageSent = output<string>();
   protected message = '';
+  protected isEmojiPickerOpen = signal<boolean>(false);
+  protected isMentionPickerOpen = signal<boolean>(false);
 
   /**
    * Send message
@@ -31,6 +33,7 @@ export class MessageBoxComponent {
    * Handle emoji picker (placeholder)
    */
   openEmojiPicker(): void {
+    this.isEmojiPickerOpen.update((v) => !v);
     console.log('Open emoji picker');
   }
 
@@ -38,6 +41,7 @@ export class MessageBoxComponent {
    * Handle mention picker (placeholder)
    */
   openMentionPicker(): void {
+    this.isMentionPickerOpen.update((v) => !v);
     console.log('Open mention picker');
   }
 }

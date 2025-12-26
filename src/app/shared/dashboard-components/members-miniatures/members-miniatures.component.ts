@@ -4,7 +4,7 @@
  * @module shared/dashboard-components/members-miniatures
  */
 
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export interface MemberMiniature {
@@ -20,13 +20,14 @@ export interface MemberMiniature {
   styleUrl: './members-miniatures.component.scss',
 })
 export class MembersMiniatureComponent {
-  /**
-   * List of members to display (max 3 avatars shown)
-   */
   members = input<MemberMiniature[]>([]);
+  totalCount = input<number>(0);
+  memberClicked = output<void>();
 
   /**
-   * Total member count
+   * Handle click event
    */
-  totalCount = input<number>(0);
+  onClick(): void {
+    this.memberClicked.emit();
+  }
 }
