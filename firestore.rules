@@ -29,13 +29,14 @@ service cloud.firestore {
     }
 
     /**
-     * Check if the authenticated user has the platform-wide 'admin' role.
+     * Check if the authenticated user has 'admin' or 'owner' (owner implies admin).
      * Role can only ever be set directly in Firestore (see users/{userId} update rule,
-     * which forbids changing it through the client) — see functions/scripts/set-admin-role.js.
+     * which forbids changing it through the client) — see functions/scripts/set-admin-role.js
+     * and the setUserRole callable (admin promote/demote, owner-only).
      */
     function isAdmin() {
       return isAuthenticated()
-             && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+             && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'owner'];
     }
 
     /**
@@ -484,6 +485,17 @@ service cloud.firestore {
 
       // DELETE: Only sender can delete pending invitations
       allow delete: if isSender() && resource.data.status == 'pending';
+    }
+
+    // ========================================
+    // AUDIT LOG COLLECTION
+    // ========================================
+
+    match /auditLog/{entryId} {
+      // Only admins/owner can read; only the setUserRole callable (Admin SDK, bypasses
+      // rules entirely) ever writes here — clients can never create/update/delete entries.
+      allow read: if isAdmin();
+      allow write: if false;
     }
 
     // ========================================
