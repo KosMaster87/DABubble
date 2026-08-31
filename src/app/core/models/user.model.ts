@@ -24,6 +24,9 @@ export interface User {
   isOnline: boolean;
   lastSeen: Date;
   lastHeartbeat?: Date; // Timestamp of last heartbeat for offline detection
+  /** Platform-wide role. Client rules never allow changing this once set — grant admin
+   * manually (Firebase Console/Admin SDK), not through the app. */
+  role?: 'member' | 'admin';
   channels: string[]; // Channel IDs where user is member
   directMessages: string[]; // User IDs for direct conversations
   createdAt: Date;
