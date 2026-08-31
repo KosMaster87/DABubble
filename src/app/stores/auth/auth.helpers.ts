@@ -9,6 +9,11 @@ import { doc, Firestore, getDoc, onSnapshot, Unsubscribe } from '@angular/fire/f
 import { User } from '@core/models/user.model';
 import { StoreCleanupService } from '@core/services/store-cleanup.service';
 import { patchState } from '@ngrx/signals';
+import {
+  addLoginUserToDefaultChannels,
+  createLoginFirestoreUser,
+  createLoginNotesDM,
+} from '../helpers/auth-login.helpers';
 
 /**
  * Normalize Google profile photo URL to a shorter, stable format
@@ -124,7 +129,20 @@ export const createAuthStateHandlers = (
             // lastRead is handled separately by UnreadService to avoid reactive loops
           };
         } else {
-          // Fallback to Firebase Auth data only
+          // Firestore doc missing: onAuthStateChanged can fire (e.g. on reload or a
+          // redirect-based sign-in) before performLogin/signup have written it, or without
+          // ever going through them. Create it now, mirroring performLogin's first-login path,
+          // so presence writes (heartbeat) and other users/{uid} updates don't permanently
+          // fail Firestore rules against a nonexistent document.
+          await createLoginFirestoreUser(
+            firebaseUser.uid,
+            firebaseUser.email || '',
+            firebaseUser.displayName,
+            firebaseUser.photoURL,
+            firestore,
+          );
+          await createLoginNotesDM(firebaseUser.uid, firestore);
+          await addLoginUserToDefaultChannels(firebaseUser.uid, firestore);
           user = mapFirebaseUserToUser(firebaseUser);
         }
 
