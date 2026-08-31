@@ -126,6 +126,7 @@ export const createAuthStateHandlers = (
             directMessages: firestoreData['directMessages'] || [],
             createdAt: firestoreData['createdAt']?.toDate() || new Date(),
             updatedAt: firestoreData['updatedAt']?.toDate() || new Date(),
+            role: firestoreData['role'],
             // lastRead is handled separately by UnreadService to avoid reactive loops
           };
         } else {
@@ -173,6 +174,7 @@ export const createAuthStateHandlers = (
                 directMessages: newDirectMessages,
                 createdAt: firestoreData['createdAt']?.toDate() || new Date(),
                 updatedAt: firestoreData['updatedAt']?.toDate() || new Date(),
+                role: firestoreData['role'],
                 // lastRead is intentionally NOT included to avoid triggering effects
               };
               patchState(store, { user: updatedUser });
@@ -240,6 +242,7 @@ export const createAuthStateHandlers = (
             directMessages: firestoreData['directMessages'] || [],
             createdAt: firestoreData['createdAt']?.toDate() || new Date(),
             updatedAt: firestoreData['updatedAt']?.toDate() || new Date(),
+            role: firestoreData['role'],
             // lastRead is handled separately by UnreadService to avoid reactive loops
           };
           console.log('✅ User data loaded from Firestore:', {
