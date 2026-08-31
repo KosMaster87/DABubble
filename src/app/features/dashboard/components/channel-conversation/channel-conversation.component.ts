@@ -101,6 +101,9 @@ export class ChannelConversationComponent {
   private isJoiningChannel = signal<boolean>(false);
   protected isMember = this.channelData.isUserMember(this.channelId);
   protected isChannelOwner = this.conversationState.getIsChannelOwner(this.channel);
+  protected isCurrentUserChannelAdmin = this.conversationState.getIsCurrentUserChannelAdmin(
+    this.channel,
+  );
   protected showAccessScreen = this.conversationState.getShowAccessScreen(
     this.isChannelOwner,
     this.isMember,
@@ -151,7 +154,7 @@ export class ChannelConversationComponent {
   );
 
   protected isOwnProfile = this.conversationState.getIsOwnProfile();
-  protected editProfileUser = this.conversationState.getEditProfileUser();
+  protected editProfileUser = this.conversationState.getEditProfileUser(this.channel);
   protected channelInfo = this.channelData.getChannelInfoData(this.channel);
   protected isChannelViewOpen = this.channelViewService.isChannelViewOpen;
   protected selectedChannelId = this.channelViewService.channelId;
@@ -166,7 +169,7 @@ export class ChannelConversationComponent {
    */
   protected availableUsers = this.channelData.getAvailableUsers(this.channelId);
   protected totalMemberCount = computed(() => this.members().length);
-  protected selectedMember = this.conversationState.getSelectedMember();
+  protected selectedMember = this.conversationState.getSelectedMember(this.channel);
   protected messages = this.conversationState.getMessages(this.channel);
   protected hasMoreMessages = this.conversationState.getHasMoreMessages(this.channel);
   protected loadingOlderMessages = this.conversationState.getLoadingOlderMessages(this.channel);
@@ -256,6 +259,14 @@ export class ChannelConversationComponent {
   protected onRemoveMember = async (): Promise<void> => {
     const memberId = this.channelConversationUI.getSelectedMemberId()();
     if (memberId) await this.handlers.handleRemoveMember(this.channel().id, memberId);
+  };
+
+  /**
+   * Handle make/remove channel admin toggle from the profile-view footer.
+   */
+  protected onToggleChannelAdmin = async (): Promise<void> => {
+    const memberId = this.channelConversationUI.getSelectedMemberId()();
+    if (memberId) await this.handlers.handleToggleChannelAdmin(this.channel().id, memberId);
   };
 
   /**

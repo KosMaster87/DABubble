@@ -37,25 +37,23 @@
           </button>
         </div>
 
-        <!-- Admin Status -->
+        <!-- Admin Status (read-only: role changes go through the Admin Panel / channel
+             member menu now, not this form) -->
         <div class="profile-edit__field">
-          <div class="profile-edit__radio-row">
-            <button
-              class="profile-edit__radio-btn"
-              (click)="isAdmin.set(!isAdmin())"
-              [attr.aria-checked]="isAdmin()"
-            >
-              <img
-                [src]="
-                  isAdmin()
-                    ? '/img/icon/channel-bar/radio-btn-checked.svg'
-                    : '/img/icon/channel-bar/radio-btn-default.svg'
-                "
-                alt=""
-                class="profile-edit__radio-icon"
-              />
-            </button>
-            <label class="profile-edit__radio-label">Set as admin</label>
+          <div
+            class="profile-edit__radio-row"
+            title="Manage admin status from the Admin Panel or the channel member menu"
+          >
+            <img
+              [src]="
+                isAdmin()
+                  ? '/img/icon/channel-bar/radio-btn-checked.svg'
+                  : '/img/icon/channel-bar/radio-btn-default.svg'
+              "
+              alt=""
+              class="profile-edit__radio-icon"
+            />
+            <label class="profile-edit__radio-label">Admin</label>
           </div>
         </div>
 

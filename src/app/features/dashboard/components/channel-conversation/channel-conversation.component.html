@@ -88,12 +88,13 @@
             [isVisible]="channelConversationUI.getProfileViewState()()"
             [isOwnProfile]="isOwnProfile()"
             [isChannelOwner]="isCurrentUserChannelOwner()"
-            [isCurrentUserAdmin]="false"
+            [isCurrentUserAdmin]="isCurrentUserChannelAdmin()"
             [isSelectedUserOwner]="isSelectedUserChannelOwner()"
             (closeClicked)="channelConversationUI.closeProfileView()"
             (editClicked)="channelConversationUI.openEditProfile()"
             (messageClicked)="onProfileMessage()"
             (removeMemberClicked)="onRemoveMember()"
+            (toggleChannelAdminClicked)="onToggleChannelAdmin()"
           />
         }
 

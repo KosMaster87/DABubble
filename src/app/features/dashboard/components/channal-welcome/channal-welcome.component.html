@@ -35,13 +35,14 @@
           [user]="selectedMember()!"
           [isVisible]="isProfileViewOpen()"
           [isOwnProfile]="isOwnProfile()"
-          [isChannelOwner]="false"
+          [isChannelOwner]="isChannelOwner()"
           [isCurrentUserAdmin]="isCurrentUserAdmin()"
-          [isSelectedUserOwner]="false"
+          [isSelectedUserOwner]="isSelectedMemberOwner()"
           (closeClicked)="onProfileViewClose()"
           (editClicked)="onProfileEdit()"
           (messageClicked)="onProfileMessage()"
           (removeMemberClicked)="onRemoveMember()"
+          (toggleChannelAdminClicked)="onToggleChannelAdmin()"
         />
       }
 
