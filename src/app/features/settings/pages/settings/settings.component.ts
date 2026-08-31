@@ -8,6 +8,7 @@ import { Component, inject, output, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ThemeToggleComponent } from '@shared/components/theme-toggle';
 import { LanguageSwitcherComponent } from '@shared/components/language-switcher';
+import { AuthStore } from '@stores/auth';
 
 @Component({
   selector: 'app-settings',
@@ -18,9 +19,21 @@ import { LanguageSwitcherComponent } from '@shared/components/language-switcher'
 })
 export class SettingsComponent {
   private router = inject(Router);
+  private authStore = inject(AuthStore);
 
   isMobileView = input<boolean>(false); // Input from parent to know if mobile
   backRequested = output<void>(); // For mobile back navigation
+
+  protected isAdmin = this.authStore.isAdmin;
+
+  /**
+   * Navigate to the admin panel.
+   * @description Only rendered when isAdmin() is true; adminGuard is the real
+   * enforcement point, this is just the UI entry.
+   */
+  goToAdminPanel(): void {
+    this.router.navigate(['/dashboard/admin']);
+  }
 
   /**
    * Navigate back to dashboard or sidebar (on mobile)
