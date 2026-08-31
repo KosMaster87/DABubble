@@ -13,6 +13,11 @@ This is the project-local entry point for DA-Bubble manual documentation.
 3. Thread Notifications Explained
    [thread-notifications-logic.md](thread-notifications-logic.md)
 
+## Architecture Decision Records
+
+1. ADR 0001: Platform-wide admin role via owner-gated callable
+   [architecture/adr/0001-platform-admin-role.md](architecture/adr/0001-platform-admin-role.md)
+
 ## Governance And Refactoring
 
 1. Governance Index
