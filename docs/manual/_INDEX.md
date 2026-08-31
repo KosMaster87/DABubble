@@ -18,6 +18,9 @@ This is the project-local entry point for DA-Bubble manual documentation.
 1. ADR 0001: Platform-wide admin role via owner-gated callable
    [architecture/adr/0001-platform-admin-role.md](architecture/adr/0001-platform-admin-role.md)
 
+2. ADR 0002: Channel-level admin management via existing `admins[]`
+   [architecture/adr/0002-channel-admin-management.md](architecture/adr/0002-channel-admin-management.md)
+
 ## Governance And Refactoring
 
 1. Governance Index
