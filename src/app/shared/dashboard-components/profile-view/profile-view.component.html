@@ -74,6 +74,12 @@
 
       <!-- Footer -->
       <div class="profile-view__footer">
+        @if (!isOwnProfile() && !isSelectedUserOwner() && isChannelOwner()) {
+          <app-btn-action
+            [label]="user().isAdmin ? 'Remove channel admin' : 'Make channel admin'"
+            (clicked)="onToggleChannelAdmin()"
+          />
+        }
         @if (
           !isOwnProfile() &&
           !isSelectedUserOwner() &&
