@@ -1,0 +1,60 @@
+<div class="admin-panel">
+  <div class="admin-panel__header">
+    <h1 class="admin-panel__title">Admin Panel</h1>
+    <p class="admin-panel__subtitle">Manage who has admin access to DA Bubble</p>
+  </div>
+
+  @if (errorMessage()) {
+    <p class="admin-panel__error">{{ errorMessage() }}</p>
+  }
+
+  <ul class="admin-panel__list">
+    @for (user of users(); track user.uid) {
+      <li class="admin-panel__row">
+        <div class="admin-panel__user">
+          <span class="admin-panel__name">{{ user.displayName }}</span>
+          <span class="admin-panel__email">{{ user.email }}</span>
+        </div>
+        <span class="admin-panel__role admin-panel__role--{{ user.role || 'member' }}">
+          {{ user.role || 'member' }}
+        </span>
+        @if (canManage(user.uid, user.role)) {
+          <div class="admin-panel__actions">
+            @if (user.role === 'admin') {
+              <button
+                class="admin-panel__action-btn"
+                [disabled]="pendingUid() === user.uid"
+                (click)="demote(user.uid)"
+              >
+                Demote to member
+              </button>
+            } @else {
+              <button
+                class="admin-panel__action-btn"
+                [disabled]="pendingUid() === user.uid"
+                (click)="promote(user.uid)"
+              >
+                Promote to admin
+              </button>
+            }
+          </div>
+        }
+      </li>
+    }
+  </ul>
+
+  <div class="admin-panel__footer">
+    <button class="admin-panel__back-btn" (click)="goBack()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M15 18L9 12L15 6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      Back to Dashboard
+    </button>
+  </div>
+</div>
