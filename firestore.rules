@@ -126,6 +126,12 @@ service cloud.firestore {
                        // Cannot change role — not even an admin, through the client (no
                        // Admin UI/audit trail yet; see functions/scripts/set-admin-role.js)
                        && request.resource.data.get('role', null) == resource.data.get('role', null)
+                       // Allow updating presence fields (heartbeat) — only these fields may change
+                       && (
+                         !request.resource.data.diff(resource.data).affectedKeys().hasAny(['lastHeartbeat', 'isOnline'])
+                         ||
+                         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastHeartbeat', 'isOnline'])
+                       )
                        // Only validate displayName if it's being changed
                        && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['displayName'])
                            || isValidStringLength(request.resource.data.displayName, 1, 50))
