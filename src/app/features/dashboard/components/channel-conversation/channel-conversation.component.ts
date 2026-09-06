@@ -43,6 +43,7 @@ import { ProfileEditComponent } from '@shared/dashboard-components/profile-edit/
 import { ProfileViewComponent } from '@shared/dashboard-components/profile-view/profile-view.component';
 import { AuthStore } from '@stores/auth';
 import { ChannelMessageStore, ChannelStore } from '@stores/index';
+import { TranslatePipe } from '@core/services/i18n/translate.pipe';
 import { ChannelAccessComponent } from '../channel-access/channel-access.component';
 
 export interface ChannelMessage {
@@ -72,6 +73,7 @@ export interface ChannelMessage {
     ChannelInfoComponent,
     ChannelViewComponent,
     ChannelAccessComponent,
+    TranslatePipe,
   ],
   templateUrl: './channel-conversation.component.html',
   styleUrl: './channel-conversation.component.scss',

@@ -8,6 +8,7 @@
 
 import { Component, inject, output, input, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@core/services/i18n/translate.pipe';
 import { AdminService } from '@core/services/admin/admin.service';
 import { AuthStore } from '@stores/auth';
 import { UserStore } from '@stores/users/user.store';
@@ -15,7 +16,7 @@ import { UserStore } from '@stores/users/user.store';
 @Component({
   selector: 'app-admin-panel',
   standalone: true,
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.scss',
 })

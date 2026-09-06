@@ -160,14 +160,25 @@
 
   // Settings specific
   --settings-bg: var(--workspace-bg);
-  --settings-card-bg: #eceefe;
-  --settings-card-bg-hover: #3b5f6d;
-  --settings-card-border: #7c7c7c;
-  --settings-card-border-hover: #7c7c7c;
-  --settings-card-primary-btn: #797ef3;
-  --settings-card-primary-btn-hover: #444df2;
-  --settings-card-secondary-btn: #ffffff;
-  --settings-card-secondary-btn-hover: #7c7c7c;
+  --settings-card-bg: var(--card-bg);
+  --settings-card-bg-hover: var(--hover-bg);
+  --settings-card-border: var(--border-color);
+  --settings-card-border-hover: var(--secondary-color);
+  --settings-card-primary-btn: var(--primary-color);
+  --settings-card-primary-btn-hover: var(--secondary-color);
+  --settings-card-secondary-btn: var(--container-bg);
+  --settings-card-secondary-btn-hover: var(--hover-bg);
+  --settings-card-icon-bg: var(--background-color);
+
+  // Notification specific (semantic tokens for notification-container)
+  --notification-bg: var(--card-bg);
+  --notification-text: var(--text-primary);
+  --notification-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+  --notification-success-border: #22c55e;
+  --notification-error-border: #ef4444;
+  --notification-info-border: #3b82f6;
+  --notification-warning-border: #f59e0b;
+  --notification-close-hover-bg: rgba(0, 0, 0, 0.06);
 
   // Member views specific
   --member-view-bg-hover: var(--background-color);
@@ -179,6 +190,16 @@
   --mention-chip-border: #d1d5f0;
   --mention-chip-bg-hover: #dce0f7;
   --mention-chip-border-hover: #c4c9e8;
+
+  // Notification specific (semantic tokens for notification-container)
+  --notification-bg: rgba(39, 39, 42, 0.95);
+  --notification-text: #f4f4f5;
+  --notification-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+  --notification-success-border: #4ade80;
+  --notification-error-border: #f87171;
+  --notification-info-border: #60a5fa;
+  --notification-warning-border: #fbbf24;
+  --notification-close-hover-bg: rgba(244, 244, 245, 0.12);
 
   // Channel-list-item specific
   --channel-list-item-hover-bg: #eceefe;
@@ -465,14 +486,25 @@
 
   // Settings specific
   --settings-bg: var(--workspace-bg);
-  --settings-card-bg: #5f68ac;
-  --settings-card-bg-hover: #3b5f6d;
-  --settings-card-border: #7c7c7c;
-  --settings-card-border-hover: #7c7c7c;
-  --settings-card-primary-btn: #797ef3;
-  --settings-card-primary-btn-hover: #5a62e6;
-  --settings-card-secondary-btn: #ffffff;
-  --settings-card-secondary-btn-hover: #7c7c7c;
+  --settings-card-bg: var(--card-bg);
+  --settings-card-bg-hover: var(--hover-bg);
+  --settings-card-border: var(--border-color);
+  --settings-card-border-hover: var(--secondary-color);
+  --settings-card-primary-btn: var(--primary-color);
+  --settings-card-primary-btn-hover: var(--secondary-color);
+  --settings-card-secondary-btn: var(--container-bg);
+  --settings-card-secondary-btn-hover: var(--hover-bg);
+  --settings-card-icon-bg: var(--background-color);
+
+  // Notification specific (semantic tokens for notification-container)
+  --notification-bg: var(--card-bg);
+  --notification-text: var(--text-primary);
+  --notification-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+  --notification-success-border: #22c55e;
+  --notification-error-border: #ef4444;
+  --notification-info-border: #3b82f6;
+  --notification-warning-border: #f59e0b;
+  --notification-close-hover-bg: rgba(0, 0, 0, 0.06);
 
   // Member views specific
   --member-view-bg-hover: var(--background-color);
@@ -484,6 +516,16 @@
   --mention-chip-border: #444a7a;
   --mention-chip-bg-hover: #363966;
   --mention-chip-border-hover: #4d5490;
+
+  // Notification specific (semantic tokens for notification-container)
+  --notification-bg: rgba(39, 39, 42, 0.95);
+  --notification-text: #f4f4f5;
+  --notification-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+  --notification-success-border: #4ade80;
+  --notification-error-border: #f87171;
+  --notification-info-border: #60a5fa;
+  --notification-warning-border: #fbbf24;
+  --notification-close-hover-bg: rgba(244, 244, 245, 0.12);
 
   // Channel-list-item specific
   --channel-list-item-hover-bg: #2a2d3a;

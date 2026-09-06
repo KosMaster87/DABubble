@@ -117,12 +117,12 @@
     flex-shrink: 0;
 
     &:hover:not(&--active) {
-      background-color: #eceefe;
+      background-color: var(--conversation-message-wrapper-hover-bg);
     }
 
     &--active {
       &:hover {
-        background-color: #eceefe;
+        background-color: var(--conversation-message-wrapper-hover-bg);
       }
     }
   }
@@ -184,7 +184,7 @@
         box-shadow 0.2s;
 
       &:hover {
-        background-color: #535af1;
+        background-color: var(--primary-color);
         transform: scale(1.05);
         box-shadow: 0 6px 16px rgba(68, 77, 242, 0.4);
       }
@@ -194,7 +194,7 @@
       }
 
       &--active {
-        background-color: #535af1;
+        background-color: var(--primary-color);
       }
     }
 
@@ -317,7 +317,7 @@
     }
 
     .workspace-sidebar__section-toggle:hover & {
-      color: #535af1;
+      color: var(--primary-color);
     }
   }
 
@@ -338,11 +338,11 @@
     }
 
     &:hover {
-      background-color: #eceefe;
+      background-color: var(--conversation-message-wrapper-hover-bg);
     }
 
     &--active {
-      background-color: #eceefe;
+      background-color: var(--conversation-message-wrapper-hover-bg);
     }
   }
 
@@ -603,7 +603,7 @@
     }
 
     &--message {
-      background-color: #535af1;
+      background-color: var(--primary-color);
       box-shadow: 0 0 0 1px rgba(83, 90, 241, 0.25);
     }
 

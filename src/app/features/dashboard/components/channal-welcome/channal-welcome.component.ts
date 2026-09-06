@@ -19,6 +19,7 @@ import { UserListItem } from '@shared/dashboard-components/user-list-item/user-l
 import { AuthStore } from '@stores/auth';
 import { ChannelMemberStore } from '@stores/channels/channel-member.store';
 import { ChannelStore, UserStore } from '@stores/index';
+import { TranslatePipe } from '@core/services/i18n/translate.pipe';
 
 @Component({
   selector: 'app-channal-welcome',
@@ -27,6 +28,7 @@ import { ChannelStore, UserStore } from '@stores/index';
     MembersOptionsMenuComponent,
     ProfileViewComponent,
     ProfileEditComponent,
+    TranslatePipe,
   ],
   templateUrl: './channal-welcome.component.html',
   styleUrl: './channal-welcome.component.scss',

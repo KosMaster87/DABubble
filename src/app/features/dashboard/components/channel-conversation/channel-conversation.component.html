@@ -31,7 +31,11 @@
         </h1>
         <div class="channel-conversation__description-wrapper">
           <span class="channel-conversation__privacy-badge">
-            {{ (currentChannelData()?.isPrivate ?? channel().isPrivate) ? 'Private' : 'Public' }}
+            {{
+              (currentChannelData()?.isPrivate ?? channel().isPrivate)
+                ? ('CHANNELS.PRIVATE' | t)
+                : ('CHANNELS.PUBLIC' | t)
+            }}
           </span>
           <p class="channel-conversation__description">
             {{ currentChannelData()?.description || channel().description }}
@@ -138,7 +142,11 @@
           (click)="loadOlderMessages()"
           [disabled]="loadingOlderMessages()"
         >
-          {{ loadingOlderMessages() ? 'Loading...' : 'Load older messages' }}
+          {{
+            loadingOlderMessages()
+              ? ('CHANNEL_CONVERSATION.LOADING' | t)
+              : ('CHANNEL_CONVERSATION.LOAD_OLDER_MESSAGES' | t)
+          }}
         </button>
       }
       <app-conversation-messages
