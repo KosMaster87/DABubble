@@ -86,7 +86,7 @@
   &__subtitle {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #535af1;
+    color: var(--primary-color);
     margin: 0;
 
     @media screen and (max-width: 768px) {
@@ -117,7 +117,7 @@
     transition: background-color 0.2s;
 
     &:hover {
-      background-color: #eceefe;
+      background-color: var(--surface-hover);
     }
   }
 
